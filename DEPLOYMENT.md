@@ -26,3 +26,7 @@ A private preview on a platform such as Vercel, Netlify or Cloudflare, protected
 | Production | Public site, after UPM authorisation | Live CMS |
 
 Rollback: redeploy the previous build artefact; static output makes this immediate.
+
+## Site URL
+
+Set `SITE_URL` (for example `https://upm-prototype.example.org`) at build time, so the `hreflang` alternate links use the real host. It defaults to `http://localhost:3000`.

@@ -2,32 +2,68 @@
 
 Target: WCAG 2.2 AA. Tokens are in `src/app/globals.css` (`@theme`). Components are in `src/components/`.
 
-## Brand colour — provisional
+## Brand colour
 
-UPM's public logo page says red symbolises the quest for knowledge and grey symbolises information technology, but publishes **no colour codes** (S13), and no official specification was found (S33). The reds below were chosen for contrast and must be replaced with the value from UPM's corporate identity manual.
+UPM red **#CA0026** and corporate grey **#8A9396** were supplied by the project owner on 11 November 2026 as UPM's official colours. White, charcoal and a restrained campus green support them. We avoid maroon blocks, saturated gradients and dashboard styling.
 
 ## Colour tokens
 
 | Token | Value | Use | Contrast |
 |---|---|---|---|
-| `brand-700` | #9a1124 | Primary buttons, links, focus ring | 8.47:1 on white |
-| `brand-600` | #b4152b | Accents | 6.81:1 on white |
-| `brand-800` / `900` | #7c0e1d / #5c0a15 | Hover, hero gradient | — |
-| `brand-50` / `100` | #fdf2f3 / #fbe3e6 | Tints, badges | brand-700 on brand-50: 7.73:1 |
-| `ink` | #1f2328 | Body text, dark bars | 15.8:1 on white |
-| `ink-muted` | #4b5563 | Secondary text | 7.56:1 on white, 6.93:1 on surface-alt |
-| `surface-alt` | #f5f5f4 | Alternate sections | — |
-| `campus-700` | #2f6b3f | Green accent (UPM's green campus) | 6.37:1 on white |
-| `demo` on `demo-bg` | #8a4b00 on #fff4e5 | "Demonstration content" badge | 6.26:1 |
-| Banner text | #5c3200 on #fff4e5 | Prototype notice | 10.11:1 |
+| `brand-600` | #CA0026 | Primary buttons, active nav, accents (official red) | 5.93:1 on white |
+| `brand-700` | #A3001F | Hover and pressed states, focus ring | 8.15:1 on white |
+| `brand-800` / `900` / `950` | #82001A / #5E0013 / #33000A | Deep gradients | — |
+| `brand-50` / `100` / `200` | #FFF1F3 / #FFE0E5 / #FFC2CC | Tints, icon tiles | — |
+| `upm-grey` | #8A9396 | Decorative lines and large text only | 3.14:1 on white |
+| `ink` | #16191D | Body text, dark buttons | 17.6:1 on white |
+| `ink-muted` | #5E676A | Secondary text (derived from the corporate grey) | 5.79:1 on white |
+| `campus-700` | #2F6B3F | Green accent | 6.37:1 on white |
+| `gold` | #E9B949 | Decorative accent on charcoal only | — |
+| `demo` on `demo-bg` | #8A4B00 on #FFF4E5 | "Demonstration content" badge | 6.26:1 |
+
+## Glass surfaces
+
+| Utility | Recipe | Rule |
+|---|---|---|
+| `glass` | White at 78%, 18 px blur, 160% saturation, translucent white border, layered shadow | Dark text only. The 78% base keeps contrast valid where `backdrop-filter` is unsupported. Menus over photography use 95%. |
+| `glass-dark` | Charcoal at 45%, 20 px blur | White text only, always over a darkening gradient |
+| `mesh-charcoal` | Charcoal with soft red and green glows | Research band and footer |
+| `lift` | 4 px rise and deeper shadow on hover and focus | Cards only |
+
+Glass is used for the header, mega menus, hero panel, search panels, cards and the visit panel. Body sections stay solid so the page does not become a wash of transparency.
 
 ## Typography
 
-System font stack led by Inter (not bundled, so no external font request). Base 16 px, line-height 1.6. Headings: H1 30/48 px (mobile/desktop), H2 24/30 px, H3 18 px. One H1 per page (tested).
+- **Text:** Plus Jakarta Sans.
+- **Display:** Fraunces (variable optical size) for H1 and H2.
+- **Loading:** both are self-hosted by `next/font`, with no request to Google at runtime.
+- **Body:** 16 px, line-height 1.65.
+- **Hero H1:** 40 px on phones, 54 px on tablets, 66 px on desktop.
+- **Section H2:** 36 px on phones, 48 px from 768 px.
+- **Eyebrows:** 12 px uppercase, tracking 0.16 em, preceded by a red rule.
+- One H1 per page, which is tested.
+
+## Motion
+
+- **Reveal:** sections fade and rise once as they scroll into view, using `Reveal.tsx` (IntersectionObserver with no animation library).
+- **Without JavaScript or with reduced motion:** content is visible from the start.
+- **Hover:** cards lift and images scale gently on hover.
+- **No auto-motion:** there is no autoplay, carousel or looping animation. A slow hero zoom was tried and removed because it delayed Largest Contentful Paint.
+
+## Imagery
+
+All images go through `MediaImage.tsx`, which provides:
+
+- AVIF and WebP `srcset` at widths of 640, 1280, 1920 and 2400.
+- Intrinsic width and height, so the layout does not shift.
+- A blur placeholder.
+- Lazy loading for everything except the hero, which loads eagerly with high fetch priority.
+
+Images that are temporary artwork carry a visible label. Sources and rights are recorded in `MEDIA_REGISTER.md`.
 
 ## Spacing, layout and breakpoints
 
-`container-page`: max width 80 rem, 16 px side padding on phones, 32 px from 768 px. Section padding 40/56 px. Grids: 1 column → 2 at 640 px → 3 at 1024 px. Primary navigation collapses into a menu button below 1024 px.
+`container-page`: max width 82 rem, 16 px side padding on phones, 32 px from 768 px. Section padding 40/56 px. Grids: 1 column → 2 at 640 px → 3 at 1024 px. Primary navigation collapses into a menu button below 1024 px; from 1024 px a second header row shows the seven sections, each with a glass mega menu that opens on hover and on keyboard focus.
 
 ## Interaction and accessibility rules
 
@@ -44,8 +80,12 @@ System font stack led by Inter (not bundled, so no external font request). Base 
 | Component | File | Notes |
 |---|---|---|
 | Prototype banner | `PrototypeBanner.tsx` | On every page; bilingual |
-| Header, utility bar, mobile menu, language switch | `SiteHeader.tsx` | Escape closes menu and returns focus |
-| Footer | `SiteFooter.tsx` | Disclaimer and links |
+| Header, mega menus, quick links, mobile menu, language switch | `SiteHeader.tsx` | Sticky frosted glass that firms up on scroll; Escape closes the mobile menu and returns focus |
+| Hero search | `home/HeroSearch.tsx` | Programmes or Everything scope; popular chips |
+| Faculty finder | `home/FacultyFinder.tsx` | Text and campus filters with a live count |
+| Media image, temporary art label | `MediaImage.tsx` | See Imagery |
+| Scroll reveal | `Reveal.tsx` | See Motion |
+| Footer | `SiteFooter.tsx` | Charcoal mesh with tagline, calls to action, four link columns, disclaimer and source links |
 | Breadcrumbs | `Breadcrumbs.tsx` | `aria-current="page"` |
 | PageHeader, Section, Card, ButtonLink, Notice, EmptyState, ExternalLink | `ui.tsx` | Card makes the whole tile clickable from its heading link |
 | Demo badge, provenance note | `Provenance.tsx` | Shows "Demonstration content" or source IDs |
@@ -60,4 +100,4 @@ System font stack led by Inter (not bundled, so no external font request). Base 
 
 ## Bilingual architecture
 
-Routes `/en/...` and `/ms/...` share templates. Interface strings come from a typed dictionary; a unit test checks both languages have the same keys. Body content is English-only in this release and is marked `lang="en"`. Malaysian Government Design System (MYDS) patterns should be compared in Milestone 4 for form and colour-contrast conventions; this was not done here.
+Routes `/en/...` and `/ms/...` share templates. Interface strings come from a typed dictionary; a unit test checks both languages have the same keys. The homepage body is written in both languages; the Malay copy is a draft that needs review by a native-speaking editor. Inner page bodies are still English-only and are marked `lang="en"` on `/ms` routes, with a visible notice, so they are not presented as translated. Malaysian Government Design System (MYDS) patterns should be compared in Milestone 4 for form and colour-contrast conventions; this was not done here.

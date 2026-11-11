@@ -91,7 +91,7 @@ Single column on phones, two columns from 640 px, three from 1024 px.
 
 | # | Item | Status |
 |---|---|---|
-| 1 | Layout, banner, navigation, bilingual routing, 404/error/loading | Done |
+| 1 | Layout, banner, navigation, bilingual routing, 404 and error states | Done (route loading skeleton removed in 0.2.0: every page is static, and the Suspense fallback caused a layout shift) |
 | 2 | Programme catalogue with filters and deep links | Done |
 | 3 | Programme detail template (honest empty sections) | Done |
 | 4 | Central search across all local content | Done |

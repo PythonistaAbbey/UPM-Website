@@ -44,5 +44,6 @@ Editors (SSO+MFA) ─►│  Drupal 11 headless CMS           │──► Postg
 | Static generation | Fast, cheap, secure, no runtime data access | Personalisation is approved |
 | Data files instead of a CMS in the prototype | Speed; keeps the prototype honest about provenance | Milestone 4 |
 | Do not reproduce the UPM logo | No licence; avoids impersonation | UPM authorises use |
-| Provisional brand red | No published colour codes | Brand manual supplied |
+| Brand red #CA0026 and grey #8A9396 | Supplied by the project owner | Brand manual reviewed |
+| Original temporary artwork instead of UPM photos | Photo licences unconfirmed; image hosts blocked from the build network | Licensed photos or UPM permission recorded in MEDIA_REGISTER.md |
 | Client-side search | Under 200 records | Content exceeds a few thousand items |

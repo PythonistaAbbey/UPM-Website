@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 — 2026-11-11 (design upgrade, Milestones A–C)
+
+### Changed
+- Palette moved to UPM red #CA0026 and corporate grey #8A9396 with charcoal, white and a campus green; all text pairs meet WCAG AA.
+- New type pairing: Plus Jakarta Sans for text, Fraunces for display headings (self-hosted).
+- Header rebuilt as sticky frosted glass with quick links, a search pill, glass mega menus for every section and a card-style mobile menu. The prototype notice is slimmer but still on every page.
+- Homepage rebuilt with ten sections: full-bleed hero with glass panel and scoped search, "I am a…" gateway (8 audiences), Discover UPM editorial, field cards with programme search, research showcase, searchable faculty directory, Life at UPM mosaic, news feature, visit panel and a premium footer.
+- Homepage copy now in both English and Bahasa Malaysia (Malay is a draft for review).
+
+### Added
+- Media system: manifest with rights status, AVIF and WebP variants, blur placeholders, lazy loading and a priority hero. Eight original temporary illustrations, each labelled, until licensed UPM photography is approved.
+- MEDIA_REGISTER.md recording all images, candidate UPM photos and their licence status.
+- Favicon, absolute hreflang links (set `SITE_URL` when deployed).
+- 13 new browser tests for the homepage (hero search scopes, chips, audience gateway, field links, faculty finder, mega menu keyboard access, header on scroll, image loading and failure, axe with motion on).
+
 ## 0.1.0 — 2026-11-11
 
 ### Added
