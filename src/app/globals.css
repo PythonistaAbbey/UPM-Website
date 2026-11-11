@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. See DESIGN_SYSTEM.md.
+ * --color-brand-* is a PROVISIONAL red: UPM's public logo page names red and grey
+ * but publishes no colour codes (SOURCE_REGISTER S13). Replace with the value from
+ * the official corporate identity manual before any formal review.
+ */
+@theme {
+  --color-brand-50: #fdf2f3;
+  --color-brand-100: #fbe3e6;
+  --color-brand-600: #b4152b;
+  --color-brand-700: #9a1124; /* primary actions: 7.6:1 on white */
+  --color-brand-800: #7c0e1d;
+  --color-brand-900: #5c0a15;
+
+  --color-ink: #1f2328;       /* charcoal body text: 15.8:1 on white */
+  --color-ink-muted: #4b5563; /* secondary text: 7.6:1 on white */
+  --color-line: #d1d5db;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f5f4;
+  --color-campus-700: #2f6b3f; /* green accent: 6.4:1 on white */
+  --color-campus-50: #eef6f0;
+  --color-demo: #8a4b00;       /* demo badge text: 6.2:1 on #fff4e5 */
+  --color-demo-bg: #fff4e5;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radius-card: 0.75rem;
+}
+
+@layer base {
+  html { color: var(--color-ink); background: var(--color-surface); -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--font-sans); line-height: 1.6; }
+  h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+  a { text-underline-offset: 3px; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-700);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible { outline-color: #ffffff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  @media (width >= 48rem) { padding-inline: 2rem; }
+}
