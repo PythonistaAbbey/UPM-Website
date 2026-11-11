@@ -32,12 +32,12 @@ export function SearchClient({ locale }: { locale: Locale }) {
       <form role="search" onSubmit={(e) => e.preventDefault()} className="flex max-w-2xl flex-col gap-2 sm:flex-row">
         <label htmlFor="s-q" className="sr-only">Search everything</label>
         <input id="s-q" type="search" autoFocus value={q} onChange={(e) => { setQ(e.target.value); sync(e.target.value, type); }}
-          placeholder="Search programmes, faculties, services, people, places…" className="min-h-12 flex-1 rounded-lg border border-line px-4 text-base" />
+          placeholder="Search programmes, faculties, services, people, places…" className="min-h-12 flex-1 rounded-2xl border border-line bg-white px-4 text-base outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100" />
       </form>
       {q.trim() === "" ? (
         <div className="mt-8">
           <p className="font-semibold">Try searching for:</p>
-          <ul className="mt-2 flex flex-wrap gap-2">{suggestions.map((s) => <li key={s}><button type="button" onClick={() => { setQ(s); sync(s, type); }} className="rounded-full border border-line px-3 py-1 hover:border-brand-700">{s}</button></li>)}</ul>
+          <ul className="mt-2 flex flex-wrap gap-2">{suggestions.map((s) => <li key={s}><button type="button" onClick={() => { setQ(s); sync(s, type); }} className="rounded-full border border-line bg-white/80 px-3 py-1 transition hover:border-brand-700 hover:text-brand-700">{s}</button></li>)}</ul>
         </div>
       ) : (
         <>
@@ -54,14 +54,14 @@ export function SearchClient({ locale }: { locale: Locale }) {
           </fieldset>
           <p role="status" aria-live="polite" className="my-4 font-semibold" data-testid="search-count">{results.length} {results.length === 1 ? "result" : "results"} for “{q}”</p>
           {results.length === 0 ? (
-            <div className="rounded-card border border-dashed border-line p-8 text-center">
+            <div className="rounded-3xl border border-dashed border-upm-grey/60 bg-white/70 p-8 text-center backdrop-blur">
               <p className="text-lg font-semibold">No results</p>
               <p className="mt-2 text-ink-muted">Check the spelling, use fewer words, or <Link className="underline" href={href(locale, "/contact")}>ask us directly</Link>.</p>
             </div>
           ) : (
             <ol className="space-y-3" data-testid="search-results">
               {results.slice(0, 50).map((r) => (
-                <li key={r.id} className="relative rounded-card border border-line p-4 hover:shadow-md">
+                <li key={r.id} className="glass lift relative rounded-3xl p-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">{r.type}</p>
                   <Link href={href(locale, r.href)} className="font-semibold after:absolute after:inset-0 hover:underline">{r.title}</Link>
                   {r.demo && <span className="relative ml-2"><DemoBadge label="Demonstration content" /></span>}

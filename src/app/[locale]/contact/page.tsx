@@ -17,9 +17,9 @@ export default async function Contact({ params }: LocaleParams) {
       <Breadcrumbs locale={locale} items={[{ label: d.quick.contact }]} />
       <PageHeader title="Contact and enquiries" intro={<>Universiti Putra Malaysia, 43400 UPM Serdang, Selangor Darul Ehsan, Malaysia · +603-9769 1000 · <a className="underline" href="mailto:pspk@upm.edu.my">pspk@upm.edu.my</a>. <ProvenanceNote p={{ status: "verified", sources: ["S12"], checked: "2026-11-11" }} d={d} /></>} />
       <Section title="University directory" id="directory"><Directory /></Section>
-      <div className="bg-surface-alt">
+      <div className="border-y border-white/70 bg-white/45">
         <Section title="Send an enquiry" id="enquiry">
-          <div className="max-w-2xl rounded-card border border-line bg-white p-6">
+          <div className="glass max-w-2xl rounded-3xl p-6 md:p-8">
             <Suspense fallback={<p role="status">{d.loading}</p>}><ContactForm /></Suspense>
           </div>
         </Section>

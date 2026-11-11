@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { href, resolveLocale, t, type LocaleParams } from "@/lib/i18n";
+import { media } from "@/data/media";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, ExternalLink, Notice, PageHeader, Section, grid } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -12,7 +13,7 @@ export default async function International({ params }: LocaleParams) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.international }]} />
-      <PageHeader eyebrow={d.nav.international} title="International student hub" intro="Admissions, arrival and support for students coming to UPM from outside Malaysia." />
+      <PageHeader image={media.evening} eyebrow={d.nav.international} title="International student hub" intro="Admissions, arrival and support for students coming to UPM from outside Malaysia." />
 
       <Section title="Apply to UPM" id="apply">
         <ul className={grid}>
@@ -24,7 +25,7 @@ export default async function International({ params }: LocaleParams) {
         <p className="mt-3"><ProvenanceNote p={{ status: "verified", sources: ["S08", "S15"], checked: "2026-11-11" }} d={d} /></p>
       </Section>
 
-      <div className="bg-surface-alt">
+      <div className="border-y border-white/70 bg-white/45">
         <Section title="Visas and student passes" id="visa">
           <Notice tone="warning" title="No verified visa guidance is available yet">
             UPM&apos;s Visa &amp; Pass page had a heading but no content when it was checked on 11 November 2026 (source S14). This prototype will not give visa or immigration advice. Contact Putra International Centre (i-PUTRA) and check official Malaysian government sources.

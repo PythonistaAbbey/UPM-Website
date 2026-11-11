@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { href, resolveLocale, t, type LocaleParams } from "@/lib/i18n";
+import { media } from "@/data/media";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ButtonLink, Card, ExternalLink, PageHeader, Section, grid } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -22,7 +23,7 @@ export default async function Research({ params }: LocaleParams) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.research }]} />
-      <PageHeader eyebrow={d.nav.research} title="Research and innovation" intro="Research centres, institutes and routes to commercialisation, gathered in one place.">
+      <PageHeader image={media.lab} eyebrow={d.nav.research} title="Research and innovation" intro="Research centres, institutes and routes to commercialisation, gathered in one place.">
         <div className="mt-6"><ButtonLink href={href(locale, "/research/discover")}>Find researchers and projects</ButtonLink></div>
       </PageHeader>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { href, resolveLocale, t, type LocaleParams } from "@/lib/i18n";
+import { media } from "@/data/media";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ButtonLink, Card, ExternalLink, PageHeader, Section, grid } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -20,7 +21,7 @@ export default async function CampusLife({ params }: LocaleParams) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.campus }]} />
-      <PageHeader eyebrow={d.nav.campus} title="Campus life" intro="Where to live, how to get support, and what to do on campus.">
+      <PageHeader image={media.canopy} eyebrow={d.nav.campus} title="Campus life" intro="Where to live, how to get support, and what to do on campus.">
         <div className="mt-6"><ButtonLink href={href(locale, "/campus-life/map")}>Open the campus map</ButtonLink></div>
       </PageHeader>
 
@@ -31,7 +32,7 @@ export default async function CampusLife({ params }: LocaleParams) {
         <p className="mt-3"><ProvenanceNote p={{ status: "verified", sources: ["S05", "S31"], checked: "2026-11-11" }} d={d} /></p>
       </Section>
 
-      <div className="bg-surface-alt">
+      <div className="border-y border-white/70 bg-white/45">
         <Section title="Support and wellbeing" id="support">
           <ul className={grid}>
             <li><Card title="Student Affairs Division" href="https://hep.upm.edu.my/" external>Student organisations, activities, FAQs and the student directory.</Card></li>

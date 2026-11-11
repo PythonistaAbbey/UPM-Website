@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { href, resolveLocale, t, type LocaleParams } from "@/lib/i18n";
+import { media } from "@/data/media";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, PageHeader, Section, grid } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -19,7 +20,7 @@ export default async function Faculties({ params }: LocaleParams) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.about, path: "/about" }, { label: "Faculties and schools" }]} />
-      <PageHeader title="Faculties and schools" intro={<>Every faculty uses the same page template, with its own editors. <ProvenanceNote p={{ status: "verified", sources: ["S05", "S06"], checked: "2026-11-11" }} d={d} /></>} />
+      <PageHeader image={media.agriculture} title="Faculties and schools" intro={<>Every faculty uses the same page template, with its own editors. <ProvenanceNote p={{ status: "verified", sources: ["S05", "S06"], checked: "2026-11-11" }} d={d} /></>} />
       {groups.map((g) => (
         <Section key={g.title} title={g.title}>
           <ul className={grid}>

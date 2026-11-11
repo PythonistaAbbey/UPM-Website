@@ -23,10 +23,10 @@ export function ResearchDiscovery() {
       return words.every((w) => hay.includes(w));
   });
 
-  const cls = "min-h-11 w-full rounded-lg border border-line bg-white px-3 text-base";
+  const cls = "min-h-11 w-full rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100 text-base";
   return (
     <div>
-      <form role="search" aria-label="Filter researchers and projects" onSubmit={(e) => e.preventDefault()} className="grid gap-4 rounded-card border border-line bg-surface-alt p-5 md:grid-cols-4">
+      <form role="search" aria-label="Filter researchers and projects" onSubmit={(e) => e.preventDefault()} className="glass grid gap-4 rounded-3xl p-5 md:grid-cols-4">
         <div><label htmlFor="rd-q" className="mb-1 block font-semibold">Keyword</label><input id="rd-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} className={cls} /></div>
         <div><label htmlFor="rd-theme" className="mb-1 block font-semibold">Theme</label>
           <select id="rd-theme" value={theme} onChange={(e) => setTheme(e.target.value)} className={cls}><option value="">All themes</option>{researchThemes.map((x) => <option key={x}>{x}</option>)}</select></div>
@@ -37,11 +37,11 @@ export function ResearchDiscovery() {
       </form>
       <p role="status" aria-live="polite" className="my-4 font-semibold">{results.length} {results.length === 1 ? "researcher" : "researchers"} found</p>
       {results.length === 0 ? (
-        <div className="rounded-card border border-dashed border-line p-8 text-center"><p className="font-semibold">No researchers match.</p><p className="text-ink-muted">Remove a filter or try another keyword.</p></div>
+        <div className="rounded-3xl border border-dashed border-upm-grey/60 bg-white/70 p-8 text-center backdrop-blur"><p className="font-semibold">No researchers match.</p><p className="text-ink-muted">Remove a filter or try another keyword.</p></div>
       ) : (
         <ul className="grid gap-4 md:grid-cols-2">
           {results.map((r) => (
-            <li key={r.slug} className="rounded-card border border-line p-5">
+            <li key={r.slug} className="glass rounded-3xl p-5">
               <h3 className="text-lg font-semibold">{r.name}</h3>
               <p className="text-sm text-ink-muted">{getFaculty(r.facultySlug)?.name}</p>
               <p className="mt-2 text-sm"><span className="font-semibold">Themes:</span> {r.themes.join(", ")}</p>

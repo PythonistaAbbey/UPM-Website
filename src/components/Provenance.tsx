@@ -15,12 +15,12 @@ export function ProvenanceNote({ p, d, compact = false }: { p: Provenance; d: Di
     return (
       <span className="inline-flex flex-wrap items-center gap-2">
         <DemoBadge label={d.demo} />
-        {!compact && p.note && <span className="text-xs text-ink-muted">{p.note}</span>}
+        {!compact && p.note && <span className="text-xs text-ink-muted in-[.on-dark]:text-white/85">{p.note}</span>}
       </span>
     );
   }
   return (
-    <span className="text-xs text-ink-muted">
+    <span className="text-xs text-ink-muted in-[.on-dark]:text-white/85">
       {d.verified} · {d.source} {p.sources.join(", ")} · {d.checked} {p.checked}
     </span>
   );

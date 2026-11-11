@@ -5,6 +5,7 @@ import { href, isLocale, locales, t } from "@/lib/i18n";
 import { programmes, getProgramme } from "@/data/programmes";
 import { getFaculty } from "@/data/faculties";
 import { campusLabel, levelLabel, modeLabel } from "@/lib/programmes";
+import { mediaForField } from "@/lib/visuals";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ExternalLink, Notice, PageHeader } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -36,7 +37,7 @@ export default async function ProgrammeDetail({ params }: P) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.study, path: "/study" }, { label: "Find a programme", path: "/study/programmes" }, { label: p.name }]} />
-      <PageHeader eyebrow={levelLabel[p.level]} title={p.name} intro={<ProvenanceNote p={p.provenance} d={d} />} />
+      <PageHeader image={mediaForField(p.field)} eyebrow={levelLabel[p.level]} title={p.name} intro={<ProvenanceNote p={p.provenance} d={d} />} />
       <div className="container-page grid gap-10 py-10 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-8">
           {p.note && <Notice title="About this listing">{p.note}</Notice>}
@@ -51,14 +52,14 @@ export default async function ProgrammeDetail({ params }: P) {
             <p className="mt-2 text-ink-muted">No fee figures are shown. Fees must come from the Bursar or the Division of Admission.</p></section>
         </div>
         <aside className="space-y-6">
-          <div className="rounded-card border border-line p-5">
+          <div className="glass rounded-3xl p-5">
             <h2 className="text-lg font-bold">Key facts</h2>
             <dl className="mt-3 space-y-3 text-sm">{rows.map(([k, val]) => <div key={k}><dt className="text-ink-muted">{k}</dt><dd className="font-semibold">{val}</dd></div>)}</dl>
           </div>
-          <div className="rounded-card bg-brand-700 p-5 text-white on-dark">
+          <div className="mesh-charcoal rounded-3xl p-6 text-white on-dark">
             <h2 className="text-lg font-bold">How to apply</h2>
             <p className="mt-2 text-sm">See the route that matches you, then apply on the official system.</p>
-            <Link href={href(locale, apply)} className="mt-4 inline-flex min-h-11 items-center rounded-lg bg-white px-4 font-semibold text-brand-800">See application routes</Link>
+            <Link href={href(locale, apply)} className="mt-4 inline-flex min-h-11 items-center rounded-full bg-white px-5 font-semibold text-brand-800">See application routes</Link>
           </div>
           {fac && <p className="text-sm"><Link className="font-semibold text-brand-700 underline" href={href(locale, `/faculties/${fac.slug}`)}>More about the {fac.name}</Link></p>}
         </aside>

@@ -26,7 +26,7 @@ export function CampusMap() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_22rem]">
       <div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-card border border-line bg-[#eef3ea]" data-testid="campus-map">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/80 bg-[#eef3ea] shadow-[var(--shadow-glass)]" data-testid="campus-map">
           <svg viewBox="0 0 100 75" className="absolute inset-0 h-full w-full" aria-hidden="true" preserveAspectRatio="none">
             <rect x="5" y="8" width="20" height="18" rx="3" fill="#d6e6d0" /><rect x="66" y="10" width="28" height="16" rx="3" fill="#d6e6d0" />
             <ellipse cx="50" cy="66" rx="16" ry="5" fill="#cfe0ef" />
@@ -48,15 +48,15 @@ export function CampusMap() {
       </div>
 
       <div className="space-y-4">
-        <form role="search" aria-label="Find a place" onSubmit={(e) => e.preventDefault()} className="space-y-3 rounded-card border border-line bg-surface-alt p-4">
+        <form role="search" aria-label="Find a place" onSubmit={(e) => e.preventDefault()} className="glass space-y-3 rounded-3xl p-4">
           <div><label htmlFor="map-q" className="mb-1 block font-semibold">Find a place</label>
-            <input id="map-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. library" className="min-h-11 w-full rounded-lg border border-line px-3" /></div>
+            <input id="map-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. library" className="min-h-11 w-full rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100" /></div>
           <div><label htmlFor="map-cat" className="mb-1 block font-semibold">Category</label>
-            <select id="map-cat" value={cat} onChange={(e) => setCat(e.target.value)} className="min-h-11 w-full rounded-lg border border-line bg-white px-3">
+            <select id="map-cat" value={cat} onChange={(e) => setCat(e.target.value)} className="min-h-11 w-full rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100">
               <option value="">All categories</option>{locationCategories.map((c) => <option key={c} value={c}>{label(c)}</option>)}</select></div>
         </form>
 
-        <div aria-live="polite" className="rounded-card border border-line p-4" data-testid="place-details">
+        <div aria-live="polite" className="glass rounded-3xl p-4" data-testid="place-details">
           {current ? (
             <>
               <h2 className="text-lg font-bold">{current.name}</h2>
@@ -73,7 +73,7 @@ export function CampusMap() {
           <ul className="max-h-80 space-y-1 overflow-y-auto">
             {visible.map((l) => (
               <li key={l.id}><button type="button" onClick={() => setSelected(l.id)} aria-pressed={selected === l.id}
-                className={`w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-surface-alt ${selected === l.id ? "bg-brand-50 font-semibold" : ""}`}>{l.name}</button></li>
+                className={`w-full rounded-xl px-3 py-2 text-left text-sm transition hover:bg-brand-50 ${selected === l.id ? "bg-brand-50 font-semibold" : ""}`}>{l.name}</button></li>
             ))}
           </ul>
         )}

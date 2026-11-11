@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { href, isLocale, locales, t } from "@/lib/i18n";
 import { getNewsItem, newsItems } from "@/data/news";
+import { mediaForNews } from "@/lib/visuals";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PageHeader } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -26,7 +27,7 @@ export default async function NewsDetail({ params }: P) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.news, path: "/news" }, { label: n.title }]} />
-      <PageHeader eyebrow={`${n.kind === "event" ? "Event" : "News"} · ${n.category}`} title={n.title} intro={<ProvenanceNote p={n.provenance} d={d} />} />
+      <PageHeader image={mediaForNews(n.category)} eyebrow={`${n.kind === "event" ? "Event" : "News"} · ${n.category}`} title={n.title} intro={<ProvenanceNote p={n.provenance} d={d} />} />
       <article className="container-page max-w-3xl py-10" lang="en">
         <dl className="mb-6 grid gap-2 text-sm sm:grid-cols-3">
           <div><dt className="text-ink-muted">Date</dt><dd className="font-semibold"><time dateTime={n.date}>{formatDate(n.date, locale)}</time>{n.endDate && <> – <time dateTime={n.endDate}>{formatDate(n.endDate, locale)}</time></>}</dd></div>
@@ -35,7 +36,7 @@ export default async function NewsDetail({ params }: P) {
         </dl>
         <p className="text-lg font-medium">{n.summary}</p>
         {n.body.map((para, i) => <p key={i} className="mt-4">{para}</p>)}
-        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Tags">{n.tags.map((tag) => <li key={tag} className="rounded-full bg-surface-alt px-3 py-1 text-sm">{tag}</li>)}</ul>
+        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Tags">{n.tags.map((tag) => <li key={tag} className="rounded-full bg-black/5 px-3 py-1 text-sm">{tag}</li>)}</ul>
       </article>
       {related.length > 0 && (
         <section aria-labelledby="rel" className="container-page max-w-3xl pb-10">

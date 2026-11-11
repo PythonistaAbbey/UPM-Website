@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { href, resolveLocale, t, type LocaleParams } from "@/lib/i18n";
+import { media } from "@/data/media";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, ExternalLink, Notice, PageHeader, Section, grid } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -22,21 +23,24 @@ export default async function About({ params }: LocaleParams) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.about }]} />
-      <PageHeader eyebrow={d.nav.about} title="About UPM" intro="History, vision, identity and how the university is organised." />
+      <PageHeader image={media.hero} eyebrow={d.nav.about} title="About UPM" intro="History, vision, identity and how the university is organised." />
 
       <Section title="Vision, mission and values" id="vision">
         <div className="grid gap-5 md:grid-cols-3" lang="en">
-          <blockquote className="rounded-card border-l-4 border-brand-700 bg-surface-alt p-5"><p className="text-sm font-semibold text-ink-muted">Vision</p><p className="mt-1 text-lg font-semibold">To become a university of international repute</p></blockquote>
-          <blockquote className="rounded-card border-l-4 border-brand-700 bg-surface-alt p-5"><p className="text-sm font-semibold text-ink-muted">Mission</p><p className="mt-1">To make meaningful contributions to the creation of prosperity and development of the nation and the well-being of all human beings through the exploration and dissemination of knowledge</p></blockquote>
-          <blockquote className="rounded-card border-l-4 border-campus-700 bg-campus-50 p-5"><p className="text-sm font-semibold text-ink-muted">Core values</p><p className="mt-1 text-lg font-semibold">Ihsan, diversity and sustainability</p></blockquote>
+          <blockquote className="glass rounded-3xl p-6"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">Vision</p><p className="mt-3 font-display text-2xl leading-snug text-ink">To become a university of international repute</p></blockquote>
+          <blockquote className="glass rounded-3xl p-6"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">Mission</p><p className="mt-3 text-ink">To make meaningful contributions to the creation of prosperity and development of the nation and the well-being of all human beings through the exploration and dissemination of knowledge</p></blockquote>
+          <blockquote className="rounded-3xl border border-[#bcdcc6] bg-campus-50/90 p-6 backdrop-blur"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-campus-700">Core values</p><p className="mt-3 font-display text-2xl leading-snug text-ink">Ihsan, diversity and sustainability</p></blockquote>
         </div>
         <p className="mt-3"><ProvenanceNote p={v("S09")} d={d} /></p>
       </Section>
 
       <Section title="History" id="history">
-        <ol className="relative space-y-6 border-l-2 border-line pl-6">
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {history.map(([y, text]) => (
-            <li key={y}><p className="font-bold text-brand-700">{y}</p><p className="text-ink-muted">{text}</p></li>
+            <li key={y} className="glass relative rounded-3xl p-6">
+              <p className="font-display text-3xl font-semibold text-brand-600">{y}</p>
+              <p className="mt-2 text-ink-muted">{text}</p>
+            </li>
           ))}
         </ol>
         <p className="mt-3"><ProvenanceNote p={v("S11")} d={d} /></p>
@@ -45,7 +49,7 @@ export default async function About({ params }: LocaleParams) {
       <Section title="Corporate identity" id="identity">
         <p className="max-w-3xl text-ink-muted">The UPM logo is based on a shield, representing strong principles and the preservation of knowledge. A water droplet symbolises commitment to the environment, thin lines represent electronic circuits, and three lines on each side refer to UPM&apos;s three founding faculties and its three core functions of teaching, research and services. Red symbolises the quest for knowledge; grey symbolises information technology.</p>
         <p className="mt-3"><ProvenanceNote p={v("S13")} d={d} /></p>
-        <div className="mt-4"><Notice tone="warning" title="This prototype does not reproduce the UPM logo">The official logo and colour specifications should be supplied by UPM&apos;s corporate communications office. The red used here is provisional.</Notice></div>
+        <div className="mt-4"><Notice tone="warning" title="This prototype does not reproduce the UPM logo">The official logo and colour specifications should be supplied by UPM&apos;s corporate communications office. The red (#CA0026) and grey (#8A9396) used here were supplied by the project owner as UPM&apos;s official colours.</Notice></div>
       </Section>
 
       <Section title="Leadership and governance" id="leadership">

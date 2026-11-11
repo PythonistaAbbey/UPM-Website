@@ -18,10 +18,10 @@ export function NewsArchive({ locale }: { locale: Locale }) {
     .filter((n) => (!kind || n.kind === kind) && (!category || n.category === category) && (!year || n.date.startsWith(year)) && (!onlyVerified || n.provenance.status === "verified"))
     .sort((a, b) => b.date.localeCompare(a.date)), [kind, category, year, onlyVerified]);
 
-  const cls = "min-h-11 w-full rounded-lg border border-line bg-white px-3";
+  const cls = "min-h-11 w-full rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100";
   return (
     <div>
-      <form aria-label="Filter news and events" onSubmit={(e) => e.preventDefault()} className="grid gap-4 rounded-card border border-line bg-surface-alt p-5 md:grid-cols-4">
+      <form aria-label="Filter news and events" onSubmit={(e) => e.preventDefault()} className="glass grid gap-4 rounded-3xl p-5 md:grid-cols-4">
         <fieldset><legend className="mb-1 font-semibold">Show</legend>
           <div className="flex flex-wrap gap-3">{([["", "All"], ["news", "News"], ["event", "Events"]] as const).map(([v, l]) => (
             <label key={v} className="flex min-h-9 items-center gap-1.5"><input type="radio" name="kind" checked={kind === v} onChange={() => setKind(v)} className="h-4 w-4 accent-brand-700" />{l}</label>))}</div>
@@ -34,7 +34,7 @@ export function NewsArchive({ locale }: { locale: Locale }) {
       </form>
       <p role="status" aria-live="polite" className="my-4 font-semibold" data-testid="news-count">{list.length} {list.length === 1 ? "item" : "items"}</p>
       {list.length === 0 ? (
-        <div className="rounded-card border border-dashed border-line p-8 text-center"><p className="font-semibold">Nothing matches these filters.</p></div>
+        <div className="rounded-3xl border border-dashed border-upm-grey/60 bg-white/70 p-8 text-center backdrop-blur"><p className="font-semibold">Nothing matches these filters.</p></div>
       ) : (
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{list.map((n) => <li key={n.slug}><NewsCard item={n} locale={locale} /></li>)}</ul>
       )}

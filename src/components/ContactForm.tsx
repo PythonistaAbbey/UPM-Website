@@ -35,15 +35,15 @@ export function ContactForm() {
   if (done) {
     const unit = contacts.find((c) => c.id === done)?.unit ?? "the central enquiries office";
     return (
-      <div role="status" className="rounded-card border-l-4 border-campus-700 bg-campus-50 p-5" data-testid="form-success">
+      <div role="status" className="rounded-3xl border border-[#bcdcc6] bg-campus-50/90 p-5 backdrop-blur" data-testid="form-success">
         <p className="text-lg font-semibold">Your enquiry passed validation</p>
         <p className="mt-2 text-sm">This is a demonstration, so <strong>nothing was sent and nothing was stored</strong>. In a live service, this enquiry would be routed to: <strong>{unit}</strong>.</p>
-        <button type="button" onClick={() => setDone(null)} className="mt-4 rounded-lg border border-campus-700 px-4 py-2 font-semibold text-campus-700">Write another enquiry</button>
+        <button type="button" onClick={() => setDone(null)} className="mt-4 inline-flex min-h-11 items-center rounded-full border border-campus-700 bg-white/80 px-5 font-semibold text-campus-700">Write another enquiry</button>
       </div>
     );
   }
 
-  const field = "min-h-11 w-full rounded-lg border px-3 text-base";
+  const field = "min-h-11 w-full rounded-xl border bg-white px-3 text-base outline-none transition focus:ring-4 focus:ring-brand-100";
   const err = (k: string) => (errors[k] ? `${k}-error` : undefined);
   const border = (k: string) => (errors[k] ? "border-brand-700 border-2" : "border-line");
   const keys = Object.keys(errors);
@@ -52,7 +52,7 @@ export function ContactForm() {
     <form noValidate onSubmit={onSubmit} className="space-y-5" aria-describedby="form-note">
       <p id="form-note" className="text-sm text-ink-muted">All fields are required. Demonstration only: submissions are validated in your browser and never sent.</p>
       {keys.length > 0 && (
-        <div ref={summaryRef} tabIndex={-1} role="alert" className="rounded-lg border-l-4 border-brand-700 bg-brand-50 p-4" data-testid="error-summary">
+        <div ref={summaryRef} tabIndex={-1} role="alert" className="rounded-2xl border border-brand-200 border-l-4 border-l-brand-700 bg-brand-50/95 p-4" data-testid="error-summary">
           <p className="font-semibold">There {keys.length === 1 ? "is 1 problem" : `are ${keys.length} problems`} with your enquiry</p>
           <ul className="mt-2 list-disc pl-5 text-sm">{keys.map((k) => <li key={k}><a href={`#cf-${k}`} className="underline">{errors[k]}</a></li>)}</ul>
         </div>
@@ -77,7 +77,7 @@ export function ContactForm() {
       </div>
       <div>
         <label htmlFor="cf-message" className="mb-1 block font-semibold">Your message</label>
-        <textarea id="cf-message" name="message" rows={6} maxLength={2000} aria-invalid={!!errors.message} aria-describedby={`message-hint ${err("message") ?? ""}`.trim()} className={`w-full rounded-lg border px-3 py-2 text-base ${border("message")}`} />
+        <textarea id="cf-message" name="message" rows={6} maxLength={2000} aria-invalid={!!errors.message} aria-describedby={`message-hint ${err("message") ?? ""}`.trim()} className={`w-full rounded-xl border bg-white px-3 py-2 text-base outline-none transition focus:ring-4 focus:ring-brand-100 ${border("message")}`} />
         <p id="message-hint" className="mt-1 text-sm text-ink-muted">Between 20 and 2,000 characters. Do not include passwords, IC numbers or other sensitive details.</p>
         {errors.message && <p id="message-error" className="mt-1 text-sm font-semibold text-brand-700">{errors.message}</p>}
       </div>
@@ -92,7 +92,7 @@ export function ContactForm() {
         </label>
         {errors.consent && <p id="consent-error" className="mt-1 text-sm font-semibold text-brand-700">{errors.consent}</p>}
       </div>
-      <button type="submit" className="min-h-11 rounded-lg bg-brand-700 px-6 font-semibold text-white hover:bg-brand-800">Check and submit enquiry</button>
+      <button type="submit" className="inline-flex min-h-12 items-center rounded-full bg-brand-600 px-6 font-semibold text-white shadow-lg shadow-brand-900/20 transition hover:bg-brand-700">Check and submit enquiry</button>
     </form>
   );
 }

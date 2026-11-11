@@ -38,10 +38,10 @@ export function ProgrammeFinder({ locale }: { locale: Locale }) {
   const clear = () => { setQ(""); router.replace(pathname, { scroll: false }); };
   const active = Boolean(q) || keys.some((k) => sp.get(k));
 
-  const select = "min-h-11 w-full rounded-lg border border-line bg-white px-3 text-base";
+  const select = "min-h-11 w-full rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100 text-base";
   return (
     <div className="grid gap-8 lg:grid-cols-[18rem_1fr]">
-      <form role="search" aria-label="Filter programmes" onSubmit={(e) => e.preventDefault()} className="space-y-4 self-start rounded-card border border-line bg-surface-alt p-5 lg:sticky lg:top-4">
+      <form role="search" aria-label="Filter programmes" onSubmit={(e) => e.preventDefault()} className="glass space-y-4 self-start rounded-3xl p-5 lg:sticky lg:top-36">
         <div>
           <label htmlFor="pf-q" className="mb-1 block font-semibold">Keyword</label>
           <input id="pf-q" type="search" value={q} onChange={(e) => { setQ(e.target.value); update("q", e.target.value); }} placeholder="e.g. computer" className={select} />
@@ -82,7 +82,7 @@ export function ProgrammeFinder({ locale }: { locale: Locale }) {
             {Object.entries(modeLabel).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
           </select>
         </div>
-        <button type="button" onClick={clear} disabled={!active} className="min-h-11 w-full rounded-lg border border-brand-700 font-semibold text-brand-700 hover:bg-brand-50 disabled:cursor-not-allowed disabled:border-line disabled:text-ink-muted">
+        <button type="button" onClick={clear} disabled={!active} className="min-h-11 w-full rounded-full border border-brand-700 bg-white/80 font-semibold text-brand-700 hover:bg-brand-50 disabled:cursor-not-allowed disabled:border-line disabled:text-ink-muted">
           Clear all filters
         </button>
       </form>
@@ -92,21 +92,21 @@ export function ProgrammeFinder({ locale }: { locale: Locale }) {
           {results.length} {results.length === 1 ? "programme" : "programmes"} found
         </p>
         {results.length === 0 ? (
-          <div className="rounded-card border border-dashed border-line p-8 text-center">
+          <div className="rounded-3xl border border-dashed border-upm-grey/60 bg-white/70 p-8 text-center backdrop-blur">
             <p className="text-lg font-semibold">No programmes match these filters</p>
             <p className="mt-2 text-ink-muted">Try a shorter keyword or remove a filter.</p>
-            <button type="button" onClick={clear} className="mt-4 rounded-lg bg-brand-700 px-5 py-2.5 font-semibold text-white">Clear all filters</button>
+            <button type="button" onClick={clear} className="mt-4 inline-flex min-h-11 items-center rounded-full bg-brand-600 px-6 font-semibold text-white shadow-lg shadow-brand-900/20 transition hover:bg-brand-700">Clear all filters</button>
           </div>
         ) : (
           <ul className="grid gap-4 md:grid-cols-2" data-testid="programme-results">
             {results.map((p) => (
-              <li key={p.slug} className="relative rounded-card border border-line bg-white p-5 hover:shadow-md">
+              <li key={p.slug} className="glass lift relative rounded-3xl p-5">
                 <h3 className="font-semibold"><Link href={href(locale, `/study/programmes/${p.slug}`)} className="after:absolute after:inset-0 hover:underline" lang="en">{p.name}</Link></h3>
                 <p className="mt-1 text-sm text-ink-muted">{getFaculty(p.facultySlug)?.name ?? "School of Graduate Studies / central"}</p>
                 <ul className="mt-3 flex flex-wrap gap-2 text-xs">
                   <li className="rounded-full bg-brand-50 px-2.5 py-0.5 font-semibold text-brand-800">{levelLabel[p.level]}</li>
                   <li className="rounded-full bg-campus-50 px-2.5 py-0.5 font-semibold text-campus-700">{campusLabel[p.campus]}</li>
-                  <li className="rounded-full bg-surface-alt px-2.5 py-0.5 font-semibold text-ink">{modeLabel[p.mode]}</li>
+                  <li className="rounded-full bg-black/5 px-2.5 py-0.5 font-semibold text-ink">{modeLabel[p.mode]}</li>
                 </ul>
               </li>
             ))}

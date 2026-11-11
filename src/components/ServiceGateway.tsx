@@ -15,7 +15,7 @@ export function ServiceGateway({ list, locale }: { list: ServiceLink[]; locale: 
           <h2 id={`${slug(c)}-h`} className="text-2xl font-bold">{c}</h2>
           <ul className="mt-4 grid gap-4 md:grid-cols-2">
             {list.filter((s) => s.category === c).map((s) => (
-              <li key={s.id} className="relative flex flex-col rounded-card border border-line p-5 hover:shadow-md">
+              <li key={s.id} className="glass lift relative flex flex-col rounded-3xl p-5">
                 <h3 className="font-semibold">
                   <a href={s.url} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0 hover:underline">
                     {s.name}<span className="sr-only"> ({d.opensExternal}, opens in a new tab)</span> <span aria-hidden="true">↗</span>
@@ -23,7 +23,7 @@ export function ServiceGateway({ list, locale }: { list: ServiceLink[]; locale: 
                 </h3>
                 <p className="mt-1 text-sm text-ink-muted">{s.description}</p>
                 <ul className="mt-3 flex flex-wrap gap-2 text-xs">
-                  {s.requiresLogin && <li className="rounded-full bg-surface-alt px-2.5 py-0.5 font-semibold">{d.loginRequired}</li>}
+                  {s.requiresLogin && <li className="rounded-full bg-black/5 px-2.5 py-0.5 font-semibold">{d.loginRequired}</li>}
                   {s.insecureLink && <li className="rounded-full bg-demo-bg px-2.5 py-0.5 font-semibold text-demo">{d.insecure}</li>}
                 </ul>
                 <p className="mt-auto pt-3"><ProvenanceNote p={s.provenance} d={d} /></p>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { href, resolveLocale, t, type LocaleParams } from "@/lib/i18n";
+import { media } from "@/data/media";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ButtonLink, Card, ExternalLink, Notice, PageHeader, Section, grid } from "@/components/ui";
 import { ProvenanceNote } from "@/components/Provenance";
@@ -25,7 +26,7 @@ export default async function Study({ params }: LocaleParams) {
   return (
     <>
       <Breadcrumbs locale={locale} items={[{ label: d.nav.study }]} />
-      <PageHeader eyebrow={d.nav.study} title="Study at UPM" intro="Find a programme, choose your route in, and apply through the official system.">
+      <PageHeader image={media.library} eyebrow={d.nav.study} title="Study at UPM" intro="Find a programme, choose your route in, and apply through the official system.">
         <div className="mt-6 flex flex-wrap gap-3">
           <ButtonLink href={href(locale, "/study/programmes")}>Find a programme</ButtonLink>
           <ButtonLink href={href(locale, "/faculties")} variant="secondary">Browse faculties</ButtonLink>
@@ -40,11 +41,11 @@ export default async function Study({ params }: LocaleParams) {
         </ul>
       </Section>
 
-      <div className="bg-surface-alt">
+      <div className="border-y border-white/70 bg-white/45">
         <Section title="Ways to apply" id="pathways" intro="From UPM's How to Apply page. Requirements, deadlines and fees are not reproduced here: always check the official page.">
           <ul className="grid gap-5 md:grid-cols-2">
             {pathways.map((p) => (
-              <li key={p.id} id={p.id} className="rounded-card border border-line bg-white p-5">
+              <li key={p.id} id={p.id} className="glass rounded-3xl p-5">
                 <h3 className="text-lg font-semibold">{p.title}</h3>
                 <p className="mt-2 text-sm text-ink-muted">{p.body}</p>
                 <p className="mt-3 text-sm"><ExternalLink href={p.link.url}>{p.link.label}</ExternalLink></p>

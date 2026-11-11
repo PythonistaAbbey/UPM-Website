@@ -13,12 +13,12 @@ export function Directory() {
   return (
     <div>
       <label htmlFor="dir-q" className="mb-1 block font-semibold">Search the directory</label>
-      <input id="dir-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. admission, library, ICT" className="min-h-11 w-full max-w-md rounded-lg border border-line px-3" />
+      <input id="dir-q" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. admission, library, ICT" className="min-h-11 w-full max-w-md rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100" />
       <p role="status" aria-live="polite" className="my-3 text-sm font-semibold">{list.length} {list.length === 1 ? "contact" : "contacts"}</p>
       {list.length === 0 ? <p className="text-ink-muted">No contacts match. Try another word, or use the enquiry form.</p> : (
         <ul className="grid gap-4 md:grid-cols-2" data-testid="directory-results">
           {list.map((c) => (
-            <li key={c.id} className="rounded-card border border-line p-4">
+            <li key={c.id} className="glass rounded-3xl p-4">
               <p className="font-semibold">{c.unit}</p>
               <p className="text-sm text-ink-muted">{c.topic}</p>
               <dl className="mt-2 space-y-1 text-sm">

@@ -1,13 +1,43 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { MediaAsset } from "@/data/media";
+import { MediaImage, TempArtLabel } from "./MediaImage";
 
-/** Light aurora page header with a large display title. */
-export function PageHeader({ title, intro, eyebrow, children }: { title: string; intro?: ReactNode; eyebrow?: string; children?: ReactNode }) {
+/** Shared surface and form-control classes for inner pages. */
+export const panel = "glass rounded-3xl p-5";
+export const field = "min-h-11 w-full rounded-xl border border-line bg-white px-3 outline-none transition focus:border-brand-600 focus:ring-4 focus:ring-brand-100";
+export const band = "border-y border-white/70 bg-white/45";
+
+/**
+ * Page header. Without an image: light aurora with a large display title.
+ * With an image: a floating photographic panel with the title on dark glass.
+ */
+export function PageHeader({ title, intro, eyebrow, children, image }: { title: string; intro?: ReactNode; eyebrow?: string; children?: ReactNode; image?: MediaAsset }) {
+  if (image) {
+    return (
+      <div className="container-page pb-6 pt-4 md:pb-10">
+        <div className="relative isolate flex min-h-[360px] items-end overflow-hidden rounded-[2rem] text-white shadow-2xl shadow-black/15 md:min-h-[440px]">
+          <MediaImage asset={image} priority sizes="(min-width: 1312px) 1312px, 100vw" decorative className="absolute inset-0 -z-20" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0d0f12]/85 via-[#0d0f12]/45 to-[#0d0f12]/10" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0d0f12]/60 to-transparent" />
+          {image.temporary && <span className="absolute right-4 top-4 hidden sm:block"><TempArtLabel /></span>}
+          <div className="on-dark w-full p-4 sm:p-8 md:p-12">
+            <div className="glass-dark max-w-3xl animate-rise rounded-[1.75rem] p-6 sm:p-8">
+              {eyebrow && <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/90">{eyebrow}</p>}
+              <h1 className="text-[2.2rem] leading-[1.05] sm:text-5xl md:text-6xl">{title}</h1>
+              {intro && <div className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg">{intro}</div>}
+              {children}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="relative isolate overflow-hidden">
       <div aria-hidden="true" className="absolute -left-32 -top-40 -z-10 h-[28rem] w-[28rem] rounded-full bg-brand-200/60 blur-3xl animate-float" />
       <div aria-hidden="true" className="absolute -right-24 top-0 -z-10 h-[22rem] w-[22rem] rounded-full bg-[#cfe6d6]/70 blur-3xl animate-float-slow" />
-      <div className="container-page pb-12 pt-8 md:pb-16 md:pt-12">
+      <div className="container-page pb-10 pt-8 md:pb-14 md:pt-12">
         <div className="animate-rise">
           {eyebrow && (
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700 backdrop-blur">
@@ -28,7 +58,7 @@ export function Section({ title, id, children, intro, eyebrow, tone = "plain" }:
   const body = (
     <>
       <div className="max-w-3xl">
-        {eyebrow && <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">{eyebrow}</p>}
+        {eyebrow && <p className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-700"><span aria-hidden="true" className="h-px w-8 bg-brand-600" />{eyebrow}</p>}
         <h2 id={hid} className="text-3xl text-ink md:text-4xl">{title}</h2>
         {intro && <div className="mt-3 text-ink-muted">{intro}</div>}
       </div>
@@ -53,7 +83,7 @@ export function Card({ title, href, children, meta, external, icon }: { title: s
     )
   ) : title;
   return (
-    <article className={`group glass relative flex h-full flex-col rounded-card p-6 has-[a:focus-visible]:outline has-[a:focus-visible]:outline-3 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-brand-700 ${href ? "lift" : ""}`}>
+    <article className={`group glass relative flex h-full flex-col rounded-3xl p-6 has-[a:focus-visible]:outline has-[a:focus-visible]:outline-3 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-brand-700 ${href ? "lift" : ""}`}>
       {icon && <div aria-hidden="true" className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-900 text-white shadow-md shadow-brand-900/20">{icon}</div>}
       <h3 className="pr-8 text-lg font-semibold leading-snug text-ink">{heading}</h3>
       {href && (
@@ -102,7 +132,7 @@ export function Notice({ tone = "info", title, children }: { tone?: "info" | "wa
 
 export function EmptyState({ title, children }: { title: string; children?: ReactNode }) {
   return (
-    <div className="glass rounded-card border-dashed p-10 text-center">
+    <div className="rounded-3xl border border-dashed border-upm-grey/60 bg-white/70 p-10 text-center backdrop-blur">
       <div aria-hidden="true" className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-full bg-brand-50 text-xl text-brand-700">∅</div>
       <p className="text-lg font-semibold">{title}</p>
       {children && <div className="mt-2 text-ink-muted">{children}</div>}
