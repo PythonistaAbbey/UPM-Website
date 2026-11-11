@@ -9,8 +9,8 @@
 @theme {
   --color-brand-50: #fdf2f3;
   --color-brand-100: #fbe3e6;
-  --color-brand-600: #b4152b;
-  --color-brand-700: #9a1124; /* primary actions: 7.6:1 on white */
+  --color-brand-600: #b4152b; /* 6.8:1 on white */
+  --color-brand-700: #9a1124; /* primary actions: 8.5:1 on white */
   --color-brand-800: #7c0e1d;
   --color-brand-900: #5c0a15;
 

@@ -12,7 +12,7 @@ describe("i18n", () => {
     expect(keysOf(dictionaries.ms).sort()).toEqual(keysOf(dictionaries.en).sort());
   });
   it("has no empty strings", () => {
-    for (const d of Object.values(dictionaries)) for (const k of keysOf(d)) expect(k.split(".").reduce((o: any, p) => o[p], d)).not.toBe("");
+    for (const d of Object.values(dictionaries)) for (const k of keysOf(d)) expect(k.split(".").reduce<unknown>((o, p) => (o as Record<string, unknown>)[p], d)).not.toBe("");
   });
   it("translates every primary nav child", () => {
     for (const n of primaryNav) for (const c of n.children) expect(c.labelMs.length).toBeGreaterThan(0);
