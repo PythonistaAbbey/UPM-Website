@@ -1,0 +1,130 @@
+[
+  {
+    "id": "campus-golden-hour",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "campus-golden-hour-640.avif",
+      "campus-golden-hour-640.webp",
+      "campus-golden-hour-1280.avif",
+      "campus-golden-hour-1280.webp",
+      "campus-golden-hour-1920.avif",
+      "campus-golden-hour-1920.webp",
+      "campus-golden-hour-2400.avif",
+      "campus-golden-hour-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABQBACdASoYAA8APu1kq04ppaQiMAgBMB2JQBOmUGMEz/gPGB9jQPZvV2mAAP7NPUDiKM1fim41Arp0FP1v6MozOlT57vQr9ThU/TsGkg+C+UhuuJGFO9d9RpHkVnfCuFOT/xCYKYHXvnmmEMsy/TM4fDVQzwRaCDVmfCo4V+NW6FKb8AA="
+  },
+  {
+    "id": "green-canopy",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "green-canopy-640.avif",
+      "green-canopy-640.webp",
+      "green-canopy-1280.avif",
+      "green-canopy-1280.webp",
+      "green-canopy-1920.avif",
+      "green-canopy-1920.webp",
+      "green-canopy-2400.avif",
+      "green-canopy-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAwBACdASoYAA8APu1iqU2ppaOiMAgBMB2JQBYdu4AaPNtE30zxT3RxbgAA/nLH5QktOK+VWtLAys73eiKON7zpEOiD61iIvIRi+N7HpjmqoOnsXnPLrg/Hhnik5P1kGkulvGzqIFR3O+ymySy9mtv/mern9eXS42by8a8Wug8PwpCYzOmkuoms/bt447RI0iOYrPZ/AAA="
+  },
+  {
+    "id": "research-lab",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "research-lab-640.avif",
+      "research-lab-640.webp",
+      "research-lab-1280.avif",
+      "research-lab-1280.webp",
+      "research-lab-1920.avif",
+      "research-lab-1920.webp",
+      "research-lab-2400.avif",
+      "research-lab-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoYAA8APu1iqU2ppaOiMAgBMB2JYwCdACHfh+tmhFLM5+gA/ui4HQy5nQ9DRohslIXBoikNckxHCA+9cAKjK2ZGW78AAA=="
+  },
+  {
+    "id": "library-facade",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "library-facade-640.avif",
+      "library-facade-640.webp",
+      "library-facade-1280.avif",
+      "library-facade-1280.webp",
+      "library-facade-1920.avif",
+      "library-facade-1920.webp",
+      "library-facade-2400.avif",
+      "library-facade-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAwCdASoYAA8APu1iqU2ppaOiMAgBMB2JZQC7IICDAqRRdNQItlwAAP7GA+cuvFTsWb781+qGEtEKFICsNCTiHWxOCqUHOeEsNUfm3UMl6p24TkBcQQAA"
+  },
+  {
+    "id": "graduation",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "graduation-640.avif",
+      "graduation-640.webp",
+      "graduation-1280.avif",
+      "graduation-1280.webp",
+      "graduation-1920.avif",
+      "graduation-1920.webp",
+      "graduation-2400.avif",
+      "graduation-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABQBACdASoYAA8APu1iqU2ppaOiMAgBMB2JQBOmUAS24c0pgpebKzMM1iIAAN1bJPAZRfDQaUmuj3fX+68iSoH3uJ0HiUrHcL7yn1H1QChdsNChNgWuCY+w8faTFbO58kG/VUXiNxtMyB5bmbIgKCUSrckOen9yUKE55L1yJgC18ZHvuoaGvDTXUQAAAA=="
+  },
+  {
+    "id": "agriculture-fields",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "agriculture-fields-640.avif",
+      "agriculture-fields-640.webp",
+      "agriculture-fields-1280.avif",
+      "agriculture-fields-1280.webp",
+      "agriculture-fields-1920.avif",
+      "agriculture-fields-1920.webp",
+      "agriculture-fields-2400.avif",
+      "agriculture-fields-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoYAA8APu1iqk2ppaQiMAgBMB2JYgCdACHMQD84mRGiTAD+i1Ge5xCGstWhhTJKz9WkfFxxSeQzk/SQ/q2rgva3BtZWe0wan1R4HOjjdl07HzPGUr5CgAAA"
+  },
+  {
+    "id": "campus-evening",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "campus-evening-640.avif",
+      "campus-evening-640.webp",
+      "campus-evening-1280.avif",
+      "campus-evening-1280.webp",
+      "campus-evening-1920.avif",
+      "campus-evening-1920.webp",
+      "campus-evening-2400.avif",
+      "campus-evening-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASoYAA8APu1iqU2ppaOiMAgBMB2JYwCdABo2e/Hch9IpJjAAAP7p+R3vjvXm1yGfGihWmgL1R74oVqi2FCu3GkRqztD9WGD2FcMSWzmEn/6VsC2fW42ZgCDA99WBfLYy2g+U4iApdgIgVFAKQ5h4DMAA"
+  },
+  {
+    "id": "water-research",
+    "width": 2400,
+    "height": 1500,
+    "variants": [
+      "water-research-640.avif",
+      "water-research-640.webp",
+      "water-research-1280.avif",
+      "water-research-1280.webp",
+      "water-research-1920.avif",
+      "water-research-1920.webp",
+      "water-research-2400.avif",
+      "water-research-2400.webp"
+    ],
+    "blurDataURL": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAwCdASoYAA8APu1iqk4ppaQiMAgBMB2JYgCdMoR4GCm7sCLf3lxYAP5b8BkcyVi6a8zism5ZF4yXc8h/SgAA"
+  }
+]
