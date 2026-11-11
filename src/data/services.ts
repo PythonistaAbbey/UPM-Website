@@ -1,0 +1,42 @@
+import type { ServiceLink } from "@/lib/types";
+
+const v = (...sources: string[]) => ({ status: "verified" as const, sources, checked: "2026-11-11" });
+
+/**
+ * Public links to existing UPM systems. The prototype only links to them.
+ * It never embeds, proxies or imitates their login pages.
+ * `insecureLink` marks systems that were published with an http:// URL in the source.
+ */
+export const services: ServiceLink[] = [
+  { id: "smp", name: "Student Information System (SMP)", description: "Undergraduate student portal for academic records and registration.", audience: ["student-ug"], category: "Academic records & registration", url: "https://smp.upm.edu.my", requiresLogin: true, provenance: v("S04", "S30") },
+  { id: "igims-student", name: "i-GIMS (postgraduate students)", description: "Postgraduate student portal, including forms such as study extension (GS-13c).", audience: ["student-pg"], category: "Postgraduate studies", url: "http://sgsportal.upm.edu.my:8080/sgsportal/", requiresLogin: true, insecureLink: true, provenance: v("S04", "S15") },
+  { id: "igims-staff", name: "i-GIMS (staff)", description: "Postgraduate supervision and administration for staff.", audience: ["staff"], category: "Academic administration", url: "http://www.sps.upm.edu.my:8080/igims/index.jsp", requiresLogin: true, insecureLink: true, provenance: v("S04") },
+  { id: "learninghub", name: "Putra Learning Hub", description: "University learning platform.", audience: ["student-ug", "student-pg", "staff"], category: "Learning platforms", url: "http://learninghub.upm.edu.my/", requiresLogin: true, insecureLink: true, provenance: v("S04", "S26") },
+  { id: "office365", name: "Office 365", description: "Microsoft 365 apps for UPM accounts.", audience: ["student-ug", "student-pg", "staff"], category: "Learning platforms", url: "https://portal.office.com", requiresLogin: true, provenance: v("S26") },
+  { id: "emel", name: "emel@upm", description: "University email.", audience: ["staff", "student-ug", "student-pg"], category: "Email & accounts", url: "http://emel.upm.edu.my", requiresLogin: true, insecureLink: true, provenance: v("S04", "S26") },
+  { id: "upm-id", name: "UPM-ID registration guide", description: "PDF guide to registering a UPM-ID account.", audience: ["staff", "student-ug", "student-pg"], category: "Email & accounts", url: "https://upm-id.upm.edu.my/info/man_student.pdf", requiresLogin: false, provenance: v("S26") },
+  { id: "ict-support", name: "ICT Support (iDEC)", description: "Help with ICT problems. Email idec_ictsupport@upm.edu.my or call 03-9769 1990.", audience: ["staff", "student-ug", "student-pg"], category: "ICT support", url: "https://idec.upm.edu.my/perkhidmatan/sokongan_pengguna/sokongan_ict-804?L=en", requiresLogin: false, provenance: v("S26") },
+  { id: "spict", name: "SPICT ICT System Services", description: "ICT service requests.", audience: ["staff"], category: "ICT support", url: "http://spict.upm.edu.my/loginspict.php", requiresLogin: true, insecureLink: true, provenance: v("S26") },
+  { id: "eclaims", name: "E-Claim System", description: "Staff claims.", audience: ["staff"], category: "Claims, leave & payroll", url: "http://eclaims.upm.edu.my/login/", requiresLogin: true, insecureLink: true, provenance: v("S04", "S26") },
+  { id: "sisman", name: "HR Knowledge System (SISMAN)", description: "Human resources knowledge system.", audience: ["staff"], category: "HR resources", url: "http://www.sisman.upm.edu.my/", requiresLogin: true, insecureLink: true, provenance: v("S04", "S30") },
+  { id: "travel", name: "Travel Abroad Online Application", description: "Staff applications for overseas travel.", audience: ["staff"], category: "HR resources", url: "http://bursar1.upm.edu.my/spln/", requiresLogin: true, insecureLink: true, provenance: v("S04") },
+  { id: "elatihan", name: "Training Management System (e-Latihan)", description: "Staff training records and registration.", audience: ["staff"], category: "HR resources", url: "http://elatihan.upm.edu.my/elatihan/", requiresLogin: true, insecureLink: true, provenance: v("S26") },
+  { id: "policies", name: "University policies (Dasar UPM)", description: "Published university policies.", audience: ["staff", "public"], category: "University policies", url: "http://www.pnc.upm.edu.my/mengenai_kami/dasar_universiti-5601", requiresLogin: false, insecureLink: true, provenance: v("S04") },
+  { id: "eiso", name: "e-iso", description: "Quality management system documents.", audience: ["staff"], category: "University policies", url: "http://reg.upm.edu.my/eISO/", requiresLogin: true, insecureLink: true, provenance: v("S04") },
+  { id: "rmc", name: "Research Management Centre", description: "Research management, publications and audits.", audience: ["staff", "student-pg"], category: "Research administration", url: "https://rmc.upm.edu.my/", requiresLogin: false, provenance: v("S24") },
+  { id: "psp", name: "Putra Science Park — IP and commercialisation", description: "Intellectual property applications, technology disclosure and commercialisation.", audience: ["staff", "public"], category: "Research administration", url: "https://sciencepark.upm.edu.my", requiresLogin: false, provenance: v("S25") },
+  { id: "opac", name: "Library catalogue (WebOPAC)", description: "Search the Sultan Abdul Samad Library catalogue.", audience: ["student-ug", "student-pg", "staff", "public"], category: "Library", url: "http://www.elib.upm.edu.my/", requiresLogin: false, insecureLink: true, provenance: v("S29") },
+  { id: "databases", name: "A–Z Online Databases", description: "Subscribed databases, via OpenAthens for UPM users.", audience: ["student-ug", "student-pg", "staff"], category: "Library", url: "https://upm-my.libguides.com/az/databases", requiresLogin: false, provenance: v("S29") },
+  { id: "psasir", name: "UPM Institutional Repository (UPMIR)", description: "Open repository of UPM research outputs.", audience: ["public", "student-pg", "staff"], category: "Library", url: "http://www.psasir.upm.edu.my/", requiresLogin: false, insecureLink: true, provenance: v("S04", "S29") },
+  { id: "sgs-calendar", name: "SGS academic calendars", description: "Postgraduate semester and trimester dates.", audience: ["student-pg"], category: "Academic calendars", url: "https://sgs.upm.edu.my/", requiresLogin: false, provenance: v("S15") },
+  { id: "akademik", name: "Division of Admission and Academic Governance", description: "Undergraduate academic governance, course registration guides and convocation information.", audience: ["student-ug"], category: "Academic calendars", url: "https://akademik.upm.edu.my/", requiresLogin: false, provenance: v("S17") },
+  { id: "flywire", name: "UPM Flywire", description: "International fee payment service.", audience: ["student-ug", "student-pg"], category: "Student finance", url: "https://landing-pages.flywire.com/landing/upm", requiresLogin: false, provenance: v("S04") },
+  { id: "ptptn", name: "PTPTN", description: "National Higher Education Fund Corporation.", audience: ["student-ug", "student-pg"], category: "Student finance", url: "http://www.ptptn.gov.my/", requiresLogin: false, insecureLink: true, provenance: v("S04") },
+  { id: "feedback", name: "Feedback and complaints (SISPAA)", description: "Government complaints and feedback system used by UPM.", audience: ["public", "student-ug", "student-pg", "staff"], category: "Support requests", url: "https://upm.spab.gov.my/eApps/sdmscasepool/SdmsCasePool/add.do", requiresLogin: false, provenance: v("S04", "S29", "S30") },
+  { id: "medic", name: "Medical Management System", description: "University health records system.", audience: ["staff", "student-ug", "student-pg"], category: "Support requests", url: "http://regmedic.upm.edu.my/", requiresLogin: true, insecureLink: true, provenance: v("S04") },
+  { id: "jobs", name: "Job vacancies (eJOBS)", description: "UPM job vacancies.", audience: ["public"], category: "Careers", url: "http://spj.upm.edu.my/", requiresLogin: false, insecureLink: true, provenance: v("S04") },
+  { id: "tenders", name: "Tenders and quotations", description: "UPM procurement notices on Tenderwizard.", audience: ["public"], category: "Procurement", url: "https://www.tenderwizard.my/UPM", requiresLogin: false, provenance: v("S20", "S21") },
+];
+
+export const studentServices = services.filter((s) => s.audience.some((a) => a === "student-ug" || a === "student-pg"));
+export const staffServices = services.filter((s) => s.audience.includes("staff"));

@@ -1,0 +1,49 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
+import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import "../globals.css";
+import { isLocale, locales, t } from "@/lib/i18n";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { PrototypeBanner } from "@/components/PrototypeBanner";
+
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap" });
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz", "SOFT"] });
+
+export const dynamicParams = false;
+export const generateStaticParams = () => locales.map((locale) => ({ locale }));
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const d = t(isLocale(locale) ? locale : "en");
+  return {
+    title: { default: `${d.siteName} — ${d.banner}`, template: `%s · ${d.siteName} (prototype)` },
+    description: d.bannerDetail,
+    robots: { index: false, follow: false },
+    // Absolute hreflang URLs need a base; set SITE_URL to the preview host when deployed.
+    metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
+    alternates: { languages: { en: "/en", ms: "/ms" } },
+  };
+}
+
+export default async function LocaleLayout({ children, params }: { children: ReactNode; params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const d = t(locale);
+  return (
+    <html lang={locale} className={`${jakarta.variable} ${fraunces.variable}`}>
+      <body className="min-h-screen">
+        <a href="#main" className="sr-only z-[60] rounded-full bg-brand-700 px-5 py-2.5 font-semibold text-white shadow-lg focus:not-sr-only focus:fixed focus:left-3 focus:top-3">{d.skip}</a>
+        <PrototypeBanner locale={locale} />
+        <SiteHeader locale={locale} />
+        {locale === "ms" && (
+          <p className="container-page pt-4 text-sm text-ink-muted">{d.untranslated} <span lang="en">(Page content is in English only in this prototype; navigation and interface are bilingual.)</span></p>
+        )}
+        {/* Page body content is English-only in this release, so it is marked lang="en" on /ms routes. */}
+        <main id="main" tabIndex={-1} lang={locale === "ms" ? "en" : undefined} className="outline-none">{children}</main>
+        <SiteFooter locale={locale} />
+      </body>
+    </html>
+  );
+}
