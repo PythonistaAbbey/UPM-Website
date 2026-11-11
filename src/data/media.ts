@@ -1,4 +1,5 @@
 import generated from "../../public/media/temp/generated.json";
+import { BASE_PATH } from "@/lib/i18n";
 
 /**
  * Media asset manifest. Every image used by the site is listed here with its rights status.
@@ -27,7 +28,7 @@ export interface MediaAsset {
 
 const blur = Object.fromEntries((generated as { id: string; blurDataURL: string }[]).map((g) => [g.id, g.blurDataURL]));
 const temp = (id: string, alt: string, intendedUse: string): MediaAsset => ({
-  id, base: `/media/temp/${id}`, widths: [640, 1280, 1920, 2400], width: 2400, height: 1500, alt, intendedUse,
+  id, base: `${BASE_PATH}/media/temp/${id}`, widths: [640, 1280, 1920, 2400], width: 2400, height: 1500, alt, intendedUse,
   sourcePage: "scripts/generate-temp-media.mjs", attribution: "Original artwork generated for this prototype",
   rights: "original-temporary", blurDataURL: blur[id], temporary: true,
 });

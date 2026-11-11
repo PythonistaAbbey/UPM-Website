@@ -70,6 +70,10 @@ export const t = (locale: Locale) => dictionaries[locale];
 export type Dictionary = Dict;
 
 /** Prefix an internal path with the locale. */
+/** Sub-folder the site is served from (empty locally); see next.config.ts. */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+/** Prefix for plain HTML URLs (form actions, images) that Next's <Link> and router don't rewrite. */
+export const withBase = (path: string) => `${BASE_PATH}${path}`;
 export const href = (locale: Locale, path = "/") => `/${locale}${path === "/" ? "" : path}`;
 
 export async function resolveLocale(params: Promise<{ locale: string }>): Promise<Locale> {

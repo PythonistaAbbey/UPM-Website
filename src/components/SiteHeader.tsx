@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import type { Locale } from "@/lib/types";
-import { href, t } from "@/lib/i18n";
+import { href, t, withBase } from "@/lib/i18n";
 import { primaryNav } from "@/lib/nav";
 
 function switchLocalePath(pathname: string, to: Locale) {
@@ -65,7 +65,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           </span>
         </Link>
 
-        <form role="search" action={href(locale, "/search")} className="ml-auto hidden w-full max-w-sm xl:block">
+        <form role="search" action={withBase(href(locale, "/search"))} className="ml-auto hidden w-full max-w-sm xl:block">
           <label htmlFor="header-search" className="sr-only">{d.searchLabel}</label>
           <div className="flex items-center rounded-full border border-line bg-white/90 pl-4 shadow-inner shadow-black/[0.03] transition focus-within:border-brand-600 focus-within:ring-4 focus-within:ring-brand-100">
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-ink-muted" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" strokeLinecap="round" /></svg>
