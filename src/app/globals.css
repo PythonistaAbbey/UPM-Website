@@ -7,37 +7,77 @@
  * the official corporate identity manual before any formal review.
  */
 @theme {
-  --color-brand-50: #fdf2f3;
-  --color-brand-100: #fbe3e6;
-  --color-brand-600: #b4152b; /* 6.8:1 on white */
-  --color-brand-700: #9a1124; /* primary actions: 8.5:1 on white */
-  --color-brand-800: #7c0e1d;
-  --color-brand-900: #5c0a15;
+  /* UPM official red #CA0026 and corporate grey #8A9396, as supplied by the project owner (11 Nov 2026). */
+  --color-brand-50: #fff1f3;
+  --color-brand-100: #ffe0e5;
+  --color-brand-200: #ffc2cc;
+  --color-brand-600: #ca0026; /* official UPM red: 5.9:1 on white */
+  --color-brand-700: #a3001f; /* hover / pressed: 8.2:1 on white */
+  --color-brand-800: #82001a;
+  --color-brand-900: #5e0013;
+  --color-brand-950: #33000a;
+  --color-upm-grey: #8a9396;  /* corporate grey: decorative, borders, large text only (3.1:1) */
 
-  --color-ink: #1f2328;       /* charcoal body text: 15.8:1 on white */
-  --color-ink-muted: #4b5563; /* secondary text: 7.6:1 on white */
-  --color-line: #d1d5db;
+  --color-ink: #16191d;       /* charcoal: 17.6:1 on white */
+  --color-ink-muted: #5e676a; /* grey text derived from corporate grey: 5.8:1 on white */
+  --color-line: #e3e6e7;
   --color-surface: #ffffff;
-  --color-surface-alt: #f5f5f4;
-  --color-campus-700: #2f6b3f; /* green accent: 6.4:1 on white */
+  --color-surface-alt: #f5f6f6;
+  --color-campus-700: #2f6b3f; /* natural green accent: 6.4:1 on white */
   --color-campus-50: #eef6f0;
-  --color-demo: #8a4b00;       /* demo badge text: 6.2:1 on #fff4e5 */
+  --color-gold: #e9b949;       /* decorative only */
+  --color-demo: #8a4b00;
   --color-demo-bg: #fff4e5;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --radius-card: 0.75rem;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --radius-card: 1.25rem;
+
+  --shadow-glass: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 10px 30px -12px rgb(51 5 12 / 0.18), 0 2px 6px -2px rgb(26 29 35 / 0.06);
+  --shadow-lift: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 24px 48px -16px rgb(51 5 12 / 0.28), 0 4px 12px -4px rgb(26 29 35 / 0.08);
+
+  --animate-float: float 18s ease-in-out infinite;
+  --animate-float-slow: float 26s ease-in-out infinite reverse;
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(4%, -6%, 0) scale(1.08); }
+    66% { transform: translate3d(-5%, 4%, 0) scale(0.95); }
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.12); }
+    to { transform: scale(1.04); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
 }
 
 @layer base {
-  html { color: var(--color-ink); background: var(--color-surface); -webkit-text-size-adjust: 100%; }
-  body { font-family: var(--font-sans); line-height: 1.6; }
-  h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+  html { color: var(--color-ink); background: #faf8f7; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    /* Soft aurora wash behind every page: rose top-left, campus green bottom-right. */
+    background:
+      radial-gradient(60rem 40rem at -10% -10%, rgb(255 214 222 / 0.40), transparent 60%),
+      radial-gradient(50rem 40rem at 110% 30%, rgb(214 232 219 / 0.55), transparent 60%),
+      radial-gradient(40rem 30rem at 50% 110%, rgb(246 220 196 / 0.35), transparent 60%),
+      #faf8f7;
+    background-attachment: fixed;
+  }
+  h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
+  h1, h2 { font-family: var(--font-display); font-weight: 600; font-optical-sizing: auto; }
   a { text-underline-offset: 3px; }
+  ::selection { background: var(--color-brand-700); color: #fff; }
 
   :focus-visible {
     outline: 3px solid var(--color-brand-700);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline-offset: 3px;
+    border-radius: 6px;
   }
   .on-dark :focus-visible { outline-color: #ffffff; }
 }
@@ -54,7 +94,52 @@
 @utility container-page {
   margin-inline: auto;
   width: 100%;
-  max-width: 80rem;
+  max-width: 82rem;
   padding-inline: 1rem;
   @media (width >= 48rem) { padding-inline: 2rem; }
+}
+
+/* Frosted light glass. The 78% white base keeps text contrast valid even without blur support. */
+@utility glass {
+  background: rgb(255 255 255 / 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.75);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Glass on dark backgrounds: text on it must be white. */
+@utility glass-dark {
+  background: rgb(14 16 20 / 0.45);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgb(255 255 255 / 0.18);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.12) inset, 0 20px 40px -20px rgb(0 0 0 / 0.5);
+}
+
+/* Deep brand mesh for heroes and the footer. */
+@utility mesh-charcoal {
+  background:
+    radial-gradient(40rem 26rem at 90% 0%, rgb(202 0 38 / 0.28), transparent 60%),
+    radial-gradient(36rem 28rem at 0% 100%, rgb(47 107 63 / 0.25), transparent 60%),
+    linear-gradient(160deg, #1c2024 0%, #121417 100%);
+}
+
+/* Fine dot grid used as texture over gradients. */
+@utility grid-texture {
+  background-image: radial-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@utility lift {
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  &:hover, &:focus-within { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, #ffffff 0%, #ffd9de 45%, #f3d38a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
