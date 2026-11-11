@@ -8,6 +8,10 @@ type AxePage = ConstructorParameters<typeof AxeBuilder>[0]["page"];
 const deep = ["/study/programmes/bachelor-of-civil-engineering", "/faculties/engineering", "/news/convocation-49-session-2"];
 const all = [...staticRoutes, ...deep];
 
+// Scroll-reveal sections fade in; axe would measure contrast mid-fade. Reduced motion shows final colours at once.
+// The homepage is also audited with motion on, after scrolling, in home.spec.ts.
+test.use({ reducedMotion: "reduce" });
+
 for (const locale of ["en", "ms"] as const) {
   for (const route of all) {
     const url = `/${locale}${route === "/" ? "" : route}`;

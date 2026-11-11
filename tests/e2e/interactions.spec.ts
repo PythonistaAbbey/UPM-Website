@@ -90,8 +90,10 @@ test("news archive filters by type and source", async ({ page }) => {
   await expect(page.getByTestId("news-count")).toContainText("2 items");
 });
 
-test("language switch keeps the current page", async ({ page }) => {
+test("language switch keeps the current page", async ({ page, isMobile }) => {
   await page.goto("/en/campus-life");
+  // On phones the language switch lives in the menu.
+  if (isMobile) await page.getByRole("button", { name: "Menu" }).click();
   await page.getByRole("link", { name: /Bahasa Malaysia/ }).click();
   await expect(page).toHaveURL(/\/ms\/campus-life$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "ms");
