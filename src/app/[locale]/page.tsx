@@ -97,7 +97,7 @@ export default async function Home({ params }: LocaleParams) {
     <div lang={locale}>
       {/* A — Cinematic hero */}
       <section aria-labelledby="hero-title" className="relative isolate -mt-[1px] min-h-[640px] overflow-hidden text-white md:h-[86svh] md:min-h-[680px]">
-        <MediaImage asset={media.hero} priority sizes="100vw" className="absolute inset-0 -z-20" imgClassName="scale-105 motion-safe:animate-[heroZoom_22s_ease-out_both]" />
+        <MediaImage asset={media.hero} priority sizes="100vw" className="absolute inset-0 -z-20" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0d0f12]/85 via-[#0d0f12]/55 to-[#0d0f12]/10" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0d0f12]/80 via-transparent to-transparent" />
         <div className="container-page grid h-full items-center gap-10 py-14 md:py-0 lg:grid-cols-[1.1fr_0.9fr]">

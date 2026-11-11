@@ -2,12 +2,9 @@
 
 /*
  * Design tokens. See DESIGN_SYSTEM.md.
- * --color-brand-* is a PROVISIONAL red: UPM's public logo page names red and grey
- * but publishes no colour codes (SOURCE_REGISTER S13). Replace with the value from
- * the official corporate identity manual before any formal review.
+ * Brand colours: UPM red #CA0026 and grey #8A9396, supplied by the project owner on 11 Nov 2026.
  */
 @theme {
-  /* UPM official red #CA0026 and corporate grey #8A9396, as supplied by the project owner (11 Nov 2026). */
   --color-brand-50: #fff1f3;
   --color-brand-100: #ffe0e5;
   --color-brand-200: #ffc2cc;
@@ -44,10 +41,6 @@
     0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
     33% { transform: translate3d(4%, -6%, 0) scale(1.08); }
     66% { transform: translate3d(-5%, 4%, 0) scale(0.95); }
-  }
-  @keyframes heroZoom {
-    from { transform: scale(1.12); }
-    to { transform: scale(1.04); }
   }
   @keyframes rise {
     from { opacity: 0; transform: translateY(16px); }

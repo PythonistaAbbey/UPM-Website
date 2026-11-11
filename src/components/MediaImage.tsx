@@ -19,7 +19,7 @@ export function MediaImage({ asset, sizes = "100vw", priority = false, className
         alt={decorative ? "" : asset.alt}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
-        decoding={priority ? "sync" : "async"}
+        decoding="async"
         style={asset.blurDataURL ? { backgroundImage: `url(${asset.blurDataURL})`, backgroundSize: "cover" } : undefined}
         className={`h-full w-full object-cover ${imgClassName}`}
         data-media-id={asset.id}

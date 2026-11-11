@@ -126,8 +126,21 @@ test("homepage passes axe with motion on, after every section has revealed", asy
     await page.goto(`/${locale}`);
     for (let i = 0; i < 40; i++) { await page.mouse.wheel(0, 600); await page.waitForTimeout(40); }
     await page.waitForTimeout(1000); // let the last fade finish
+    // Return to the top so the sticky header does not sit over footer links (axe would count them as obscured).
+    await page.evaluate(() => window.scrollTo(0, 0));
     const axe = await new AxeBuilder({ page: page as unknown as AxePage }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
     const serious = axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
     expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).slice(0, 3).join(" | ")}`)).toEqual([]);
   }
 });
+
+for (const width of [320, 375, 430, 768, 1024, 1440, 1920]) {
+  test(`homepage has no horizontal overflow at ${width}px`, async ({ page, isMobile }) => {
+    test.skip(isMobile, "widths set explicitly");
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/en");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
+    await page.goto("/ms");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
+  });
+}

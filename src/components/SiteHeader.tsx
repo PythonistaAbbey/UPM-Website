@@ -57,15 +57,15 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${scrolled || open ? "border-white/60 bg-white/80 shadow-[0_8px_30px_-12px_rgb(51_5_12/0.18)] backdrop-blur-xl backdrop-saturate-150" : "border-transparent bg-white/55 backdrop-blur-md"}`}>
       <div className="container-page flex items-center gap-2 py-3 sm:gap-4">
-        <Link href={href(locale)} className="flex shrink-0 items-center gap-3 rounded-2xl no-underline">
+        <Link href={href(locale)} className="flex min-w-0 items-center gap-2.5 rounded-2xl no-underline sm:shrink-0 sm:gap-3">
           <Emblem />
           <span className="leading-tight">
-            <span className="block font-display text-lg font-semibold tracking-tight text-ink">{d.siteName}</span>
+            <span className="block font-display text-base font-semibold tracking-tight text-ink sm:text-lg">{d.siteName}</span>
             <span className="block text-xs font-medium text-ink-muted">{d.siteTag}</span>
           </span>
         </Link>
 
-        <form role="search" action={href(locale, "/search")} className="ml-auto hidden w-full max-w-sm md:block">
+        <form role="search" action={href(locale, "/search")} className="ml-auto hidden w-full max-w-sm xl:block">
           <label htmlFor="header-search" className="sr-only">{d.searchLabel}</label>
           <div className="flex items-center rounded-full border border-line bg-white/90 pl-4 shadow-inner shadow-black/[0.03] transition focus-within:border-brand-600 focus-within:ring-4 focus-within:ring-brand-100">
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-ink-muted" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" strokeLinecap="round" /></svg>
@@ -86,15 +86,15 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           className="ml-auto hidden min-h-10 items-center whitespace-nowrap rounded-full border border-line bg-white/80 px-4 text-sm font-semibold text-ink transition hover:border-brand-700 hover:text-brand-700 sm:inline-flex md:ml-0">
           <span className="sr-only">{d.language}: </span>{d.switchTo}
         </Link>
-        <Link href={href(locale, "/search")} className="ml-auto inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-line bg-white/80 text-sm font-semibold sm:ml-0 sm:px-4 md:hidden"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" strokeLinecap="round" /></svg><span className="sr-only sm:not-sr-only">{d.quick.search}</span></Link>
+        <Link href={href(locale, "/search")} className="ml-auto inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full border border-line bg-white/80 text-sm font-semibold sm:ml-0 sm:px-4 xl:hidden"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" strokeLinecap="round" /></svg><span className="sr-only sm:not-sr-only">{d.quick.search}</span></Link>
         <button ref={buttonRef} type="button" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((o) => !o)}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-semibold text-white lg:hidden">
+          className="inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-ink px-3.5 text-sm sm:px-4 font-semibold text-white lg:hidden">
           <span aria-hidden="true" className="flex w-4 flex-col gap-1">
             <span className={`h-0.5 rounded bg-white transition ${open ? "translate-y-1.5 rotate-45" : ""}`} />
             <span className={`h-0.5 rounded bg-white transition ${open ? "opacity-0" : ""}`} />
             <span className={`h-0.5 rounded bg-white transition ${open ? "-translate-y-1.5 -rotate-45" : ""}`} />
           </span>
-          {open ? d.closeMenu : d.menu}
+          {d.menu}
         </button>
       </div>
 
@@ -107,13 +107,13 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                 return (
                   <li key={item.key} className="group relative">
                     <Link href={href(locale, item.path)} aria-current={active ? "page" : undefined}
-                      className={`inline-flex min-h-10 items-center gap-1 whitespace-nowrap rounded-full px-3 text-[0.875rem] font-semibold transition-colors xl:px-4 xl:text-[0.93rem] ${active ? "bg-brand-600 text-white shadow-md shadow-brand-900/20" : "text-ink hover:bg-brand-50 hover:text-brand-700"}`}>
+                      className={`inline-flex min-h-10 items-center gap-1 whitespace-nowrap rounded-full px-2 text-[0.84rem] font-semibold transition-colors xl:px-4 xl:text-[0.93rem] ${active ? "bg-brand-600 text-white shadow-md shadow-brand-900/20" : "text-ink hover:bg-brand-50 hover:text-brand-700"}`}>
                       {d.nav[item.key]}
-                      {item.children.length > 0 && <svg aria-hidden="true" viewBox="0 0 12 12" className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>}
+                      {item.children.length > 0 && <svg aria-hidden="true" viewBox="0 0 12 12" className="hidden h-3 w-3 opacity-60 transition-transform xl:block group-hover:rotate-180 group-focus-within:rotate-180"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>}
                     </Link>
                     {item.children.length > 0 && (
                       <div className="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition-all duration-200 translate-y-1 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                        <div className="glass w-80 rounded-3xl p-5">
+                        <div className="glass w-80 rounded-3xl bg-white/95! p-5">
                           <p className="font-display text-lg font-semibold text-ink">{d.nav[item.key]}</p>
                           <p className="mt-1 text-sm text-ink-muted">{locale === "ms" ? item.blurbMs : item.blurb}</p>
                           <ul className="mt-4 space-y-1">

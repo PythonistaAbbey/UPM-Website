@@ -21,6 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: `${d.siteName} — ${d.banner}`, template: `%s · ${d.siteName} (prototype)` },
     description: d.bannerDetail,
     robots: { index: false, follow: false },
+    // Absolute hreflang URLs need a base; set SITE_URL to the preview host when deployed.
+    metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
     alternates: { languages: { en: "/en", ms: "/ms" } },
   };
 }

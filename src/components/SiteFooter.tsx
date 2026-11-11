@@ -59,10 +59,10 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-white/75 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-2xl">{d.footer.note}</p>
+          <p className="max-w-2xl">{d.footer.note} {d.bannerDetail}</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            <li><a className="inline-flex min-h-6 items-center hover:text-white hover:underline" href="https://github.com/PythonistaAbbey/UPM-Website/blob/main/SOURCE_REGISTER.md" rel="noopener noreferrer" target="_blank">{d.footer.sources}<span className="sr-only"> (opens in a new tab)</span></a></li>
-            <li><a className="inline-flex min-h-6 items-center hover:text-white hover:underline" href="https://github.com/PythonistaAbbey/UPM-Website/blob/main/MEDIA_REGISTER.md" rel="noopener noreferrer" target="_blank">{ms ? "Daftar imej" : "Image register"}<span className="sr-only"> (opens in a new tab)</span></a></li>
+            <li><a className="inline-flex min-h-6 items-center hover:text-white hover:underline" href="https://github.com/PythonistaAbbey/UPM-Website/blob/HEAD/SOURCE_REGISTER.md" rel="noopener noreferrer" target="_blank">{d.footer.sources}<span className="sr-only"> (opens in a new tab)</span></a></li>
+            <li><a className="inline-flex min-h-6 items-center hover:text-white hover:underline" href="https://github.com/PythonistaAbbey/UPM-Website/blob/HEAD/MEDIA_REGISTER.md" rel="noopener noreferrer" target="_blank">{ms ? "Daftar imej" : "Image register"}<span className="sr-only"> (opens in a new tab)</span></a></li>
             <li><a className="inline-flex min-h-6 items-center hover:text-white hover:underline" href="https://spel.upm.edu.my/footnote/privacy_statement-29949" rel="noopener noreferrer" target="_blank">{ms ? "Kenyataan privasi UPM" : "UPM privacy statement"}<span className="sr-only"> (opens in a new tab)</span></a></li>
           </ul>
         </div>

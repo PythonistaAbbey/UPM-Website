@@ -106,6 +106,7 @@ test("mobile menu opens, closes with Escape and returns focus", async ({ page, i
   const btn = page.getByRole("button", { name: "Menu" });
   await btn.click();
   await expect(page.getByRole("navigation", { name: "Primary mobile" })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("navigation", { name: "Primary mobile" })).toBeHidden();
   await expect(btn).toBeFocused();
