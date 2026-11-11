@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { href, resolveLocale, type LocaleParams } from "@/lib/i18n";
+import { href, resolveLocale, withBase, type LocaleParams } from "@/lib/i18n";
 import type { Locale } from "@/lib/types";
 import { Icon } from "@/components/ui";
 import { ProvenanceNote, DemoBadge } from "@/components/Provenance";
@@ -193,7 +193,7 @@ export default async function Home({ params }: LocaleParams) {
               <p className="mt-4 max-w-2xl text-lg text-ink-muted">{c.academicBody}</p>
             </Reveal>
             <Reveal delay={100}>
-              <form action={href(locale, "/study/programmes")} className="glass grid gap-2 rounded-3xl p-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]" aria-label={ms ? "Cari program" : "Programme search"}>
+              <form action={withBase(href(locale, "/study/programmes"))} className="glass grid gap-2 rounded-3xl p-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]" aria-label={ms ? "Cari program" : "Programme search"}>
                 <label htmlFor="ac-q" className="sr-only">{ms ? "Kata kunci" : "Keyword"}</label>
                 <input id="ac-q" name="q" type="search" placeholder={ms ? "Kata kunci" : "Keyword"} className="min-h-12 w-full min-w-0 rounded-2xl border border-line bg-white px-4 outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100" />
                 <label htmlFor="ac-level" className="sr-only">{ms ? "Peringkat" : "Level"}</label>

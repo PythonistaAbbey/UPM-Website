@@ -12,9 +12,12 @@ const securityHeaders = [
 // STATIC_EXPORT=1 builds a plain HTML/CSS/JS bundle (out/) that any static host can serve.
 // Redirects and headers are then supplied by the host: see scripts/package-prototype.mjs.
 const isExport = process.env.STATIC_EXPORT === "1";
+// Set NEXT_PUBLIC_BASE_PATH (e.g. "/UPM-Website") when the export is served from a sub-folder,
+// as GitHub Pages does for project sites.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || undefined;
 
 const nextConfig: NextConfig = isExport
-  ? { output: "export", trailingSlash: true, poweredByHeader: false, experimental: { globalNotFound: true } }
+  ? { output: "export", trailingSlash: true, basePath, poweredByHeader: false, experimental: { globalNotFound: true } }
   : {
       poweredByHeader: false,
       experimental: { globalNotFound: true },
