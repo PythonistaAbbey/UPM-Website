@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>UPM Digital Campus prototype: start here</title>
+<style>
+  :root { --red:#ca0026; --ink:#16191d; --muted:#5e676a; --line:#e3e6e7; --bg:#faf8f7; }
+  * { box-sizing:border-box }
+  body { margin:0; font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg) }
+  .note { background:#fff4e5; color:#5c3200; padding:10px 16px; font-size:14px }
+  main { max-width:820px; margin:0 auto; padding:32px 16px 64px }
+  h1 { font-family:Georgia,"Times New Roman",serif; font-size:40px; line-height:1.1; margin:8px 0 12px }
+  h2 { font-family:Georgia,"Times New Roman",serif; font-size:24px; margin:36px 0 8px }
+  .eyebrow { color:var(--red); font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase }
+  .card { background:#fff; border:1px solid var(--line); border-radius:18px; padding:20px; margin:12px 0 }
+  code { background:#f1f2f2; padding:2px 6px; border-radius:6px; font-size:14px }
+  ol li, ul li { margin:6px 0 }
+  .muted { color:var(--muted) }
+  a { color:#a3001f }
+</style>
+</head>
+<body>
+<p class="note"><strong>Independent Concept Prototype: not an official UPM website.</strong> Built to evaluate a website redesign. Content marked "Demonstration" is not real.</p>
+<main>
+  <p class="eyebrow">UPM Digital Campus</p>
+  <h1>Start here</h1>
+  <p>This package contains the complete working prototype: 17 page types in English and Bahasa Malaysia (about 280 pages), as plain HTML, CSS and JavaScript in the <code>site</code> folder. It contains no programs to install or run, no server code, no database and no tracking.</p>
+
+  <h2>Three ways to view it</h2>
+  <div class="card">
+    <strong>A. No installation (recommended)</strong>
+    <ol>
+      <li>Go to <a href="https://app.netlify.com/drop">app.netlify.com/drop</a> (a free static host).</li>
+      <li>Drag the <code>site</code> folder onto the page.</li>
+      <li>Open the address it gives you. The security headers in <code>site/_headers</code> are applied automatically.</li>
+    </ol>
+    <p class="muted">Cloudflare Pages and GitHub Pages work the same way. Use a demonstration account, not a university production domain.</p>
+  </div>
+  <div class="card">
+    <strong>B. On a computer with Node.js</strong>
+    <p>Open a terminal in this folder and run <code>npx serve site</code>, then open <code>http://localhost:3000</code>.</p>
+  </div>
+  <div class="card">
+    <strong>C. On a computer with Python 3</strong>
+    <p>Run <code>python3 -m http.server 8080 -d site</code>, then open <code>http://localhost:8080/en/</code>.</p>
+  </div>
+  <p class="muted">Opening the HTML files directly from the folder (file://) is not supported: browsers block the scripts the interactive features need.</p>
+
+  <h2>What to try</h2>
+  <ul>
+    <li>Homepage hero search: type "engineering" with Programmes selected.</li>
+    <li>Programme finder: filter 99 programmes by level, faculty, field, campus and mode. The address updates so a search can be shared.</li>
+    <li>Faculty directory on the homepage: search "forest", or choose Bintulu.</li>
+    <li>Student and staff service gateways: 28 links to UPM's existing systems, with insecure (http://) links flagged.</li>
+    <li>Contact form: submit it empty to see accessible error handling. It never sends anything.</li>
+    <li>Campus map, news archive, central search and the EN/BM switch.</li>
+  </ul>
+
+  <h2>What is real and what is not</h2>
+  <ul>
+    <li>Programme names, faculties, contacts, service links and history come from UPM's public pages, each with a source ID and check date.</li>
+    <li>Researchers, most news items and the map layout are demonstration content and are labelled.</li>
+    <li>All images are original temporary artwork, labelled as such, until licensed UPM photography is approved. The UPM logo is not used.</li>
+    <li>Interface text is bilingual; the homepage body is a Malay draft that needs review; other page bodies are English for now.</li>
+  </ul>
+
+  <h2>Security of this package</h2>
+  <ul>
+    <li>Static files only: nothing executes on a server, there is no login, and no personal data is collected or stored.</li>
+    <li>Security headers for the host are included (<code>site/_headers</code>, <code>site/serve.json</code>): Content Security Policy, HSTS, no framing, no MIME sniffing, strict referrer, no camera, microphone or location.</li>
+    <li>Every page is set to "noindex" so search engines will not list it.</li>
+  </ul>
+</main>
+</body>
+</html>

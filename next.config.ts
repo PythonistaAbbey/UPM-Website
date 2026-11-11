@@ -9,15 +9,23 @@ const securityHeaders = [
   { key: "X-Robots-Tag", value: "noindex, nofollow" },
 ];
 
-const nextConfig: NextConfig = {
-  poweredByHeader: false,
-  experimental: { globalNotFound: true },
-  async redirects() {
-    return [{ source: "/", destination: "/en", permanent: false }];
-  },
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
-};
+// STATIC_EXPORT=1 builds a plain HTML/CSS/JS bundle (out/) that any static host can serve.
+// Redirects and headers are then supplied by the host: see scripts/package-prototype.mjs.
+const isExport = process.env.STATIC_EXPORT === "1";
+
+const nextConfig: NextConfig = isExport
+  ? { output: "export", trailingSlash: true, poweredByHeader: false, experimental: { globalNotFound: true } }
+  : {
+      poweredByHeader: false,
+      experimental: { globalNotFound: true },
+      async redirects() {
+        return [{ source: "/", destination: "/en", permanent: false }];
+      },
+      async headers() {
+        return [{ source: "/:path*", headers: securityHeaders }];
+      },
+    };
+
+export { securityHeaders };
 
 export default nextConfig;
