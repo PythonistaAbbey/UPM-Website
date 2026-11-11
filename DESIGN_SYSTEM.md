@@ -87,7 +87,7 @@ Images that are temporary artwork carry a visible label. Sources and rights are 
 | Scroll reveal | `Reveal.tsx` | See Motion |
 | Footer | `SiteFooter.tsx` | Charcoal mesh with tagline, calls to action, four link columns, disclaimer and source links |
 | Breadcrumbs | `Breadcrumbs.tsx` | `aria-current="page"` |
-| PageHeader, Section, Card, ButtonLink, Notice, EmptyState, ExternalLink | `ui.tsx` | Card makes the whole tile clickable from its heading link |
+| PageHeader (aurora, or photographic with `image`), Section, Card, ButtonLink, Notice, EmptyState, ExternalLink, `panel`/`field`/`band` classes | `ui.tsx` | Card makes the whole tile clickable from its heading link |
 | Demo badge, provenance note | `Provenance.tsx` | Shows "Demonstration content" or source IDs |
 | Programme filters | `ProgrammeFinder.tsx` | URL-synced |
 | Faculty cards / template | `app/[locale]/faculties/…` | Data-driven |

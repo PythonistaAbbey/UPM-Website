@@ -1,5 +1,20 @@
 # Test Report
 
+## Milestone D (0.3.0): inner pages
+
+These checks were run on 12 November 2026 (Malaysia time) in the same environment as the design upgrade round below.
+
+| Check | Result |
+|---|---|
+| Lint, type check, production build | Pass |
+| Unit tests | 30 passed |
+| Full browser and accessibility suite, `npm run test:e2e` | **160 passed, 14 skipped by design**, out of 174. That includes axe WCAG 2.2 AA on every route × locale × viewport and the new `inner.spec.ts` |
+
+Not re-measured: Lighthouse for inner pages. Bahasa Malaysia body text for inner pages is still English-only, marked `lang="en"` and announced by a visible notice.
+
+---
+
+
 ## Design upgrade (0.2.0), Milestones A–C
 
 These checks were run on 11 November 2026 in the project's cloud build environment: Linux, Node 22.23, and Chromium from Playwright 1.63. All figures come from actual runs.

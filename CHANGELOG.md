@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 — 2026-11-12 (Milestone D: inner pages)
+
+### Changed
+- **Page headers:** 10 landing and detail pages now have a floating photographic header with the title on dark glass: Study, Research, About, International, Campus life, Alumni, Faculties, faculty, programme and news. Utility pages keep the light aurora header.
+- **Components:** all inner-page components now use the glass surfaces, rounded controls and pill buttons of the new design. That covers cards, panels, the programme finder, the service gateways, the directory, the contact form, the campus map, search, news, research discovery, 404 and error.
+- **About page:** vision and values are display-type cards, and the history is a card timeline.
+- **Logo notice:** it now states that the colours were supplied by the project owner.
+
+### Added
+- `tests/e2e/inner.spec.ts`: photographic header checks on 10 pages, and no horizontal overflow on every inner page at 320, 375, 768 and 1024 px.
+
 ## 0.2.0 — 2026-11-11 (design upgrade, Milestones A–C)
 
 ### Changed
